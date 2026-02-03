@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Logo from "./Header/Logo";
+import Logo from "./sections/Header/Logo";
 import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
 import {
@@ -70,14 +70,16 @@ export function SectionNavbar() {
   const isScrolled = activeSection !== "hero";
 
   return (
-    <div className="sticky top-0 z-60">
+    <motion.div
+      animate={{
+        backgroundColor: isScrolled ? "rgba(2,6,23,0.85)" : "rgba(2,6,23,0)",
+        boxShadow: isScrolled ? "0 1px 2px rgba(0,0,0,0.1)" : "none",
+      }}
+      className="sticky top-0 z-60"
+    >
       <motion.div
-        animate={{
-          backgroundColor: isScrolled ? "rgba(2,6,23,0.85)" : "rgba(2,6,23,0)",
-          boxShadow: isScrolled ? "0 1px 2px rgba(0,0,0,0.1)" : "none",
-        }}
         transition={{ duration: 0.25, ease: "easeOut" }}
-        className="w-full px-5 h-14 flex justify-between items-center backdrop-blur"
+        className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8 h-14 flex justify-between items-center backdrop-blur"
       >
         {/* Logo */}
         <div>
@@ -131,44 +133,70 @@ export function SectionNavbar() {
 
         {/* Mobile menu */}
         <Sheet>
-          <SheetTrigger className="md:hidden text-foreground">
-            <FaBars />
+          <SheetTrigger
+            className="
+      md:hidden
+      inline-flex items-center justify-center
+      rounded-md p-2
+      text-foreground
+      transition-colors
+      hover:bg-muted
+      focus:outline-none focus:ring-2 focus:ring-ring
+    "
+          >
+            <FaBars className="h-5 w-5" />
           </SheetTrigger>
 
-          <SheetContent className="bg-card text-sidebar-foreground z-70 md:hidden">
-            <ul className="flex flex-col gap-4 mt-6 items-start pl-20">
+          <SheetContent
+            side="right"
+            className="
+      z-70 md:hidden
+      bg-card text-foreground
+      flex flex-col
+      pt-10
+    "
+          >
+            {/* Navegación */}
+            <ul className="flex flex-col gap-2 mt-6 px-6">
               {sections.map((sec) => (
                 <li key={sec.id}>
                   <SheetClose asChild>
                     <button
                       onClick={() => scrollToSection(sec.id)}
                       className={cn(
-                        "w-full py-2 flex gap-2 items-center transition-colors",
-                        activeSection === sec.id && "text-accent font-semibold",
+                        `
+                  w-full flex items-center gap-3
+                  rounded-md px-3 py-2
+                  text-base
+                  transition-colors
+                  hover:bg-muted
+                `,
+                        activeSection === sec.id &&
+                          "bg-muted text-accent font-semibold",
                       )}
                     >
-                      {sec.icon}
-                      <p>{sec.label}</p>
+                      <span className="text-lg">{sec.icon}</span>
+                      <span>{sec.label}</span>
                     </button>
                   </SheetClose>
                 </li>
               ))}
             </ul>
 
-            <div className="absolute bottom-12 left-0 flex justify-center w-full">
-              <div className="relative aspect-square w-32 md:w-52 lg:w-lg max-w-xl h-fit overflow-hidden">
+            {/* Logo */}
+            <div className="mt-auto flex justify-center pb-8">
+              <div className="relative aspect-square w-32 opacity-80">
                 <Image
                   src="/g312.png"
-                  alt="tuwebhoylogo"
+                  alt="TUWEBHOY"
                   fill
-                  objectFit="contain" // ← Prop directa (funciona en Next.js 13+)
-                  // className="object-cover" // si preferís Tailwind
+                  className="object-contain"
                 />
               </div>
             </div>
           </SheetContent>
         </Sheet>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }

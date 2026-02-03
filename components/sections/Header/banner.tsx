@@ -63,8 +63,8 @@ const Banner: React.FC<BannerProps> = ({}) => {
             gradientUnits="userSpaceOnUse"
             id="SvgjsLinearGradient1025"
           >
-            <stop stop-color="#020617" offset="0"></stop>
-            <stop stop-color="#020617" offset="1"></stop>
+            <stop stopColor="#020617" offset="0"></stop>
+            <stop stopColor="#020617" offset="1"></stop>
           </linearGradient>
         </defs>
       </svg>

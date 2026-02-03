@@ -4,16 +4,16 @@
 import { useRef } from "react";
 import { FadeIn } from "@/components/motion/FadeIn"; // asumo que tienes Stagger si lo usas
 
-import { FloatingCTA } from "@/components/FloatingCTA";
+import { FloatingCTA } from "@/components/ui/FloatingCTA";
 import { StaggerContainer } from "@/components/motion/StraggerContainer";
 import { Poppins, Inter, Merriweather } from "next/font/google";
 import { StepCard } from "@/components/ui/StepCard";
 
-import { SimpleCTAButton } from "@/components/CTAButton";
-import FAQS from "@/components/FAQs";
-import HeroSection from "@/components/Header/HeroSection";
-import FeatureSection from "@/components/FeatureSection";
-import StepsSection from "@/components/StepsSection";
+import { SimpleCTAButton } from "@/components/ui/CTAButton";
+import FAQS from "@/components/sections/FAQs";
+import HeroSection from "@/components/sections/Header/HeroSection";
+import FeatureSection from "@/components/sections/FeatureSection";
+import StepsSection from "@/components/sections/StepsSection";
 
 export const poppins = Poppins({
   weight: "300",

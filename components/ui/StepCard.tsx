@@ -1,6 +1,7 @@
 // components/StepCard.tsx
 import { ReactNode } from "react";
-
+import { title as titleFont } from "@/app/page";
+import { cn } from "@/lib/utils";
 interface StepCardProps {
   number: number | string;
   title: string;
@@ -16,35 +17,48 @@ export function StepCard({
 }: StepCardProps) {
   return (
     <div
-      className={`
-        relative flex flex-col items-center text-center 
-        p-6 md:p-8 rounded-2xl bg-card border border-border/50
-        shadow-sm hover:shadow-md transition-all duration-300
-        md:h-full
-        md:w-full
-        lg:w-full
-        max-w-xs mx-auto
-        ${className}
-      `}
+      className={cn(
+        `
+      relative flex flex-col
+      rounded-2xl
+      border border-border
+      bg-card
+      p-6 md:p-8
+      h-full w-full
+      text-center
+      transition-all duration-300
+      hover:shadow-md
+    `,
+        className,
+      )}
     >
-      {/* Número en círculo */}
+      {/* Número */}
       <div
         className="
-        absolute -top-5 left-1/2 -translate-x-1/2
-        w-12 h-12 rounded-full bg-primary text-primary-foreground
-        flex items-center justify-center text-xl font-bold
-        border-4 border-card shadow-md
-      "
+      absolute -top-6 left-1/2 -translate-x-1/2
+      flex h-12 w-12 items-center justify-center
+      rounded-full
+      bg-primary text-primary-foreground
+      text-lg font-bold
+      ring-4 ring-background
+      shadow-sm
+    "
       >
         {number}
       </div>
 
       {/* Contenido */}
-      <div className="mt-8 space-y-3">
-        <h3 className="text-xl md:text-2xl font-semibold text-foreground">
+      <div className="mt-8 flex flex-col gap-3">
+        <h3
+          className={cn(
+            "text-xl md:text-2xl font-semibold tracking-tight text-foreground",
+            titleFont,
+          )}
+        >
           {title}
         </h3>
-        <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+
+        <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
           {text}
         </p>
       </div>

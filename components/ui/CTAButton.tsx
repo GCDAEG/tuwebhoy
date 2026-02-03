@@ -53,12 +53,12 @@ export function SimpleCTAButton({
       className={`
         group relative
         inline-flex items-center gap-2.5
-        bg-linear-to-bl from-green-500 to-green-700 text-white
+        bg-linear-to-bl from-blue-500 to-blue-700 text-white
         px-5 py-2 rounded-xl
         font-medium text-lg
         shadow-md hover:shadow-xl
         transition-shadow duration-300
-        focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2
+        focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2
         ${className}
       `}
       whileHover={{

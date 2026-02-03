@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import { FooterSection } from "@/components/Footer/Footer";
+import { FooterSection } from "@/components/sections/Footer";
 import { SectionNavbar } from "@/components/Nav";
 import { ThemeProvider } from "@/components/theme-provider";
-import Banner from "@/components/Header/banner";
+import Banner from "@/components/sections/Header/banner";
 
 const metadata: Metadata = {
   title: {
@@ -51,7 +51,6 @@ export default function RootLayout({
         >
           <Banner />
           <SectionNavbar />
-
           {children}
           <FooterSection />
         </ThemeProvider>

@@ -5,18 +5,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { StaggerContainer } from "./motion/StraggerContainer";
-import { FadeIn } from "./motion/FadeIn";
+import { StaggerContainer } from "../motion/StraggerContainer";
+import { FadeIn } from "../motion/FadeIn";
 import { base, title } from "@/app/page";
 
 const FAQS = ({}) => {
   return (
     <section
       id="faq"
-      className={`flex flex-col items-center justify-center px-6 py-20 bg-background w-screen text-foreground min-h-[calc(100vh-2rem)] scroll-mt-14`}
+      className={`flex flex-col items-center justify-center  py-20 bg-background w-screen text-foreground min-h-[calc(100vh-2rem)] scroll-mt-14`}
     >
       <StaggerContainer
-        className={`max-w-5xl min-h-5xl w-full flex items-center flex-col justify-center text-center space-y-12 ${base}`}
+        className={`max-w-7xl min-h-5xl w-full flex items-center flex-col justify-center text-center space-y-12 ${base}`}
       >
         <FadeIn>
           <h3
@@ -27,7 +27,7 @@ const FAQS = ({}) => {
         </FadeIn>
         {/* Cards de ejemplo - reemplaza con tu contenido */}
         <FadeIn delay={0.2}>
-          <div className="w-screen max-w-[350] md:max-w-[700]">
+          <div>
             <Accordion type="single" collapsible className="w-full text-start ">
               <AccordionItem value="item-1 ">
                 <AccordionTrigger className={`md:text-xl pl-2 ${title}`}>

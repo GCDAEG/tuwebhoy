@@ -4,13 +4,13 @@ import Link from "next/link";
 import { BsInstagram, BsTwitterX } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa";
 import { Heart } from "lucide-react";
-import Logo from "../Header/Logo";
+import Logo from "./Header/Logo";
 import { title } from "@/app/page";
-import { HeroCTAButton } from "../CTAButton";
+import { HeroCTAButton } from "../ui/CTAButton";
 
 export function FooterSection() {
   return (
-    <footer className="relative w-full border-t border-border bg-background/80 backdrop-blur">
+    <footer className="relative w-full border-t border-border bg-background/80 backdrop-blur px-4 md:px-6 lg:px-8 ">
       <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid grid-cols-1 grid-rows-3 gap-10 md:grid-rows-3">
           {/* Brand */}
