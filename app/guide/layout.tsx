@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
 
-import { ThemeProvider } from "@/components/theme-provider";
-import Banner from "@/components/ui/banner";
-import { GuideBackground } from "@/components/ui/GuideBackground";
-import { NavBarGuide } from "./(sections)/NavBarGuide";
-
 const metadata: Metadata = {
   title: {
     default: "Tu Web Hoy - Páginas web rápidas y accesibles",

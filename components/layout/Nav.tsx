@@ -23,19 +23,15 @@ import {
   Heart,
   Star,
 } from "lucide-react";
-import { MdOutlineFeaturedPlayList, MdWorkspacesFilled } from "react-icons/md";
-import { GrSteps } from "react-icons/gr";
 import { BsQuestion } from "react-icons/bs";
-import Image from "next/image";
-import { useLayoutStore } from "@/store/layout.store";
-import { CgWorkAlt } from "react-icons/cg";
-import { BiHome, BiHomeAlt, BiSolidHome } from "react-icons/bi";
-import { LiaAwardSolid } from "react-icons/lia";
+
+import { BiSolidHome } from "react-icons/bi";
+
 import { PiStepsFill } from "react-icons/pi";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { RiGuideFill } from "react-icons/ri";
-import { titleH2 } from "@/app/layout";
+import { MdWorkspacesFilled } from "react-icons/md";
 
 const sections = [
   { id: "hero", label: "Inicio", icon: <BiSolidHome className="size-5" /> },

@@ -1,12 +1,6 @@
-import { Section } from "@/components/layout/Section";
-import { FadeIn } from "@/components/motion/FadeIn";
-import { StaggerContainer } from "@/components/motion/StraggerContainer";
-import { SimpleCTAButton } from "@/components/ui/CTAButton";
-import { StepCard } from "@/components/ui/StepCard";
 import React from "react";
 import DomainIntro from "./(sections)/DomainIntro";
 import WhatIsDomain from "./(sections)/WhatIsDomain";
-import { GuideBackground } from "@/components/ui/GuideBackground";
 import DomainProvider from "./(sections)/DomainProvider";
 import WhereToBuy from "./(sections)/WhereToBuy";
 import CommonMistakes from "./(sections)/CommonMistakes";

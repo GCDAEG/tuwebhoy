@@ -1,14 +1,8 @@
 import React from "react";
-import { title, title as titleFont, titleH2 } from "@/app/layout";
-import Image from "next/image";
-import { ArrowBigRight } from "lucide-react";
+import { title, title as titleFont } from "@/app/layout";
 import { HeroCTAButton } from "../../../components/ui/CTAButton";
-import Logo from "../../../components/ui/Logo";
 import { Section } from "@/components/layout/Section";
-import LogoSymbol from "@/components/ui/LogoSymbol";
 import HeroGeometric2 from "@/components/ui/HeroGeometric2";
-
-import FloatImagesCarousel from "@/components/ui/FloatImages";
 
 // interface HeroSectionProps {}
 
