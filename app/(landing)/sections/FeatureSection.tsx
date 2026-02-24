@@ -77,7 +77,7 @@ const FeatureSection = () => {
               {/* Detalle visual */}
               <div className="absolute left-0 top-0 h-10 w-1 rounded-full bg-primary/60" />
 
-              <div className="h-10 border flex items-center">
+              <div className="h-10 flex items-center">
                 <h3
                   className={`
           text-2xl font-semibold
