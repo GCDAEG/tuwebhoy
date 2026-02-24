@@ -2,50 +2,30 @@
 "use client";
 
 import { useRef } from "react";
-import { FadeIn } from "@/components/motion/FadeIn"; // asumo que tienes Stagger si lo usas
 
 import { FloatingCTA } from "@/components/ui/FloatingCTA";
-import { StaggerContainer } from "@/components/motion/StraggerContainer";
-import { Poppins, Inter, Merriweather } from "next/font/google";
-import { StepCard } from "@/components/ui/StepCard";
 
-import { SimpleCTAButton } from "@/components/ui/CTAButton";
-import FAQS from "@/components/sections/FAQs";
-import HeroSection from "@/components/sections/Header/HeroSection";
-import FeatureSection from "@/components/sections/FeatureSection";
-import StepsSection from "@/components/sections/StepsSection";
+import FAQS from "@/app/(landing)/sections/FAQs";
+import HeroSection from "@/app/(landing)/sections/HeroSection";
+import FeatureSection from "@/app/(landing)/sections/FeatureSection";
+import StepsSection from "@/app/(landing)/sections/StepsSection";
+import { base } from "./layout";
+import ProjectShowcase from "./(landing)/sections/ProjectShowcase";
 
-export const poppins = Poppins({
-  weight: "300",
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
-export const merriweather = Merriweather({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-export const title = merriweather.className;
-export const base = poppins.className;
 export default function HomePage() {
   const ctaRef = useRef<HTMLDivElement>(null);
 
   return (
-    <main className={`flex flex-col min-h-screen ${poppins.className} `}>
+    <main className={`min-h-screen w-full  ${base} overflow-x-hidden`}>
       {/* Hero / Header full viewport */}
-      <FadeIn delay={0.2}>
-        <HeroSection
-          title="Diseño web claro, rápido y efectivo"
-          emblema="Páginas web simples para negocios  
-Entrega rápida · Precio accesible · 
-Web lista para funcionar"
-        />
-      </FadeIn>
+
+      <HeroSection />
 
       <FeatureSection />
       {/* STEPS */}
       <StepsSection />
+      {/* PROJECTS */}
+      <ProjectShowcase />
       {/* FAQS */}
       <FAQS />
       {/* Floating elements (globales) */}

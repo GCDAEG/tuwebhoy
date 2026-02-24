@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 
-import "./globals.css";
-import { FooterSection } from "@/components/layout/Footer";
-import { SectionNavbar } from "@/components/layout/Nav";
 import { ThemeProvider } from "@/components/theme-provider";
 import Banner from "@/components/ui/banner";
-import { Merriweather, Montserrat, Inter, Roboto } from "next/font/google";
 import { GuideBackground } from "@/components/ui/GuideBackground";
-import WhatsAppChatInput from "@/components/ui/WhatsAppChatInput";
+import { NavBarGuide } from "./(sections)/NavBarGuide";
+
 const metadata: Metadata = {
   title: {
     default: "Tu Web Hoy - Páginas web rápidas y accesibles",
@@ -29,30 +26,7 @@ const metadata: Metadata = {
     images: ["/og-image.jpg"], // agrega tu imagen OG
   },
 };
-export const roboto = Roboto({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
-export const merriweather = Merriweather({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-const montserrat = Montserrat({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-// app/layout.tsx o similar
 
-export const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-export const title = merriweather.className;
-export const titleH2 = montserrat.className;
-export const base = roboto.className;
 // app/layout.tsx (versión recomendada)
 export default function RootLayout({
   children,
@@ -63,19 +37,15 @@ export default function RootLayout({
     <html lang="es" className={``} suppressHydrationWarning>
       <body
         className="
-          min-h-screen antialiased text-foreground
-          overflow-x-hidden 
-         relative
-        
-         bg-linear-to-tl from-primary/10 via-background to-primary/5
+          min-h-screen antialiased text-foreground bg-fixed
+          overflow-x-hidden bg-gradient-main
+          domain-guide-theme
         "
       >
         {/* Opcional: capa extra para overlay si quieres más control */}
 
-        <SectionNavbar />
+        {/* <Banner /> */}
         {children}
-        <WhatsAppChatInput />
-        <FooterSection />
       </body>
     </html>
   );

@@ -49,7 +49,68 @@ body {
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
-:root {
+:root  {
+  /* Fondo principal blanco/luminoso */
+  --background: #ffffff;
+  --foreground: #0f172a;          /* slate-900 para texto oscuro */
+
+  /* Cards y popovers blancos con borde sutil */
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  /* Primary: azul limpio y profesional */
+  --primary: #2563eb;             /* blue-600 */
+  --primary-foreground: #ffffff;  /* texto blanco sobre azul */
+
+  --accent: #3b82f6;              /* blue-500 para hover/acento secundario */
+  --accent-foreground: #ffffff;
+
+  /* Secondary y muted más claros */
+  --secondary: #f1f5f9;           /* slate-100 */
+  --secondary-foreground: #0f172a;
+
+  --muted: #f8fafc;               /* slate-50 */
+  --muted-foreground: #64748b;    /* slate-500 */
+
+  /* Destructive (rojo para errores/eliminar) */
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  /* Borders e inputs claros */
+  --border: #e2e8f0;              /* slate-200 */
+  --input: #e2e8f0;
+  --ring: #3b82f6;                /* blue-500 para focus */
+
+  /* Charts (tonos azules coherentes) */
+  --chart-1: #3b82f6;
+  --chart-2: #2563eb;
+  --chart-3: #1d4ed8;
+  --chart-4: #60a5fa;
+  --chart-5: #93c5fd;
+
+  /* Radio más suave (opcional) */
+  --radius: 0.75rem;
+
+  /* Sidebar (si usás sidebar en la guía) */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #3b82f6;
+
+  /* Gradientes para la guía (más claros) */
+  --gradient-bg-start: #f8fafc;
+  --gradient-bg-end: #ffffff;
+
+  --gradient-accent-start: #2563eb;
+  --gradient-accent-end: #60a5fa;
+}
+.dark{
   /* Base */
   --background: #020617;          /* slate-950 */
   --foreground: #F8FAFC;          /* slate-50 */
@@ -111,10 +172,47 @@ body {
 
   --gradient-accent-start: #2563EB;
   --gradient-accent-end: #60A5FA;
+  /* Banner darkmode */
+  --banner-bg-start: #020617;
+  --banner-bg-end: #020617;
+
+  --banner-overlay-1: rgba(255, 255, 255, 0.1);
+  --banner-overlay-2: rgba(255, 255, 255, 0.075);
+  --banner-overlay-3: rgba(255, 255, 255, 0.05);
+  --banner-overlay-4: rgba(255, 255, 255, 0.025);
+
+  --banner-overlay-dark-1: rgba(0, 0, 0, 0.1);
+  --banner-overlay-dark-2: rgba(0, 0, 0, 0.075);
+  --banner-overlay-dark-3: rgba(0, 0, 0, 0.05);
+  --banner-overlay-dark-4: rgba(0, 0, 0, 0.025);
+}
+/* Tema exclusivo para la guía de dominios (fondo blanco + acentos azules) */
+
+
+/* Opcional: forzar modo claro dentro de la guía */
+.domain-guide-theme {
+  color-scheme: light;
 }
 
+/* Ajustes para componentes específicos si es necesario */
+.domain-guide-theme .bg-card {
+  background-color: var(--card);
+}
 
-.dark {
+.domain-guide-theme .text-foreground {
+  color: var(--foreground);
+}
+
+.domain-guide-theme .border-border {
+  border-color: var(--border);
+}
+
+/* Hover y active states más visibles en fondo claro */
+.domain-guide-theme button:hover {
+  background-color: var(--muted);
+}
+
+/* .dark {
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.21 0.006 285.885);
@@ -146,14 +244,13 @@ body {
   --sidebar-accent-foreground: oklch(0.30 0.05 230);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
-  /* Gradient principal (dark) */
+
   --gradient-bg-start: oklch(0.14 0.005 285.823);
   --gradient-bg-end: oklch(0.21 0.006 285.885);
 
-  /* Gradient accent (dark) */
   --gradient-accent-start: var(--primary);
   --gradient-accent-end: oklch(0.85 0.15 215);
-}
+} */
 
 @layer base {
   * {
@@ -180,7 +277,20 @@ body {
     );
   }
 }
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
 
 /* :root {
   --background:#020617;

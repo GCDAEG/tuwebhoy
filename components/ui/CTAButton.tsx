@@ -4,127 +4,100 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BsWhatsapp } from "react-icons/bs";
+import { cn } from "@/lib/utils";
 
-// Props comunes para ambas variantes
-interface CTAButtonBaseProps {
-  ctaRef?: React.RefObject<HTMLDivElement | null>;
+interface CTAButtonProps {
+  text?: string;
+  size?: "xs" | "sm" | "md" | "lg";
+  variant?: "primary" | "secondary" | "outline";
   className?: string;
-  buttonClassName?: string;
-  href?: string; // por si quieres cambiar el link en algún caso
+  href?: string;
+  icon?: React.ReactNode;
+  targetBlank?: boolean;
 }
 
-// Variante 1: Hero (con título grande)
+export function CTAButton({
+  text = "Contactar por WhatsApp",
+  size = "md",
+  variant = "primary",
+  className,
+  href = "https://wa.me/549...", // tu número real
+  icon = <BsWhatsapp className="text-xl md:text-2xl" />,
+  targetBlank = true,
+}: CTAButtonProps) {
+  const sizeStyles = {
+    xs: "px-4 py-2 text-sm gap-1.5 rounded-md",
+    sm: "px-6 py-2.5 text-base gap-2 rounded-lg",
+    md: "px-8 py-3.5 text-lg gap-2.5 rounded-xl",
+    lg: "px-10 py-4 text-xl gap-3 rounded-2xl",
+  }[size];
+
+  const variantStyles = {
+    primary: `
+      bg-primary text-primary-foreground
+      shadow-md
+      hover:bg-primary/90 hover:shadow-lg
+    `,
+    secondary: `
+      bg-secondary text-secondary-foreground
+      border border-border
+      hover:bg-secondary/90
+    `,
+    outline: `
+      bg-transparent text-foreground
+      border-2 border-primary
+      hover:bg-primary/10
+    `,
+  }[variant];
+
+  return (
+    <motion.a
+      href={href}
+      target={targetBlank ? "_blank" : undefined}
+      rel={targetBlank ? "noopener noreferrer" : undefined}
+      aria-label={text}
+      whileHover={{ y: -1 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className={cn(
+        `
+        inline-flex items-center justify-center
+        font-semibold
+        transition-all
+        focus:outline-none
+        focus-visible:ring-2 focus-visible:ring-primary
+        focus-visible:ring-offset-2
+        `,
+        sizeStyles,
+        variantStyles,
+        className,
+      )}
+    >
+      {icon}
+      <span className="whitespace-nowrap">{text}</span>
+    </motion.a>
+  );
+}
+
+/* ========================================================= */
+/* Hero CTA */
+/* ========================================================= */
+
+interface HeroCTAButtonProps extends Omit<CTAButtonProps, "size" | "variant"> {
+  size?: "md" | "lg";
+}
+
 export function HeroCTAButton({
-  ctaRef,
-  className = "",
-  buttonClassName = "",
-  href = "https://wa.me/549...?", // ← completa con tu número real
-}: CTAButtonBaseProps & { href?: string }) {
+  size = "lg",
+  className,
+  ...props
+}: HeroCTAButtonProps) {
   return (
-    <section
-      className={`flex flex-col items-center justify-center w-fit space-y-4 md:space-y- ${className}`}
-    >
-      {/* <div className="flex w-full justify-center">
-        <h2 className="text-4xl sm:text-2xl md:text-2xl font-bold text-accent text-center leading-tight">
-          Tu web lista hoy
-        </h2>
-      </div> */}
-
-      <div ref={ctaRef} className="flex w-full justify-center">
-        <CtaButtonContent href={href} className={buttonClassName} />
-      </div>
-    </section>
-  );
-}
-
-// Variante 2: Botón simple (reutilizable en cualquier sección)
-export function SimpleCTAButton({
-  ctaRef,
-  className = "",
-  buttonClassName = "",
-  href = "https://wa.me/549...?", // ← mismo por defecto
-}: CTAButtonBaseProps & { href?: string }) {
-  return (
-    <motion.a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Contactar por WhatsApp"
-      className={`
-        group relative
-        inline-flex items-center gap-2.5
-        bg-linear-to-bl from-blue-500 to-blue-700 text-white
-        px-5 py-2 rounded-xl
-        font-medium text-lg
-        shadow-md hover:shadow-xl
-        transition-shadow duration-300
-        focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2
-        ${className}
-      `}
-      whileHover={{
-        y: -3,
-        boxShadow: "0 12px 28px -8px rgba(37, 211, 102, 0.28)",
-        transition: {
-          type: "spring",
-          stiffness: 300,
-          damping: 28,
-        },
-      }}
-      whileTap={{
-        y: 1,
-        boxShadow: "0 4px 12px -4px rgba(37, 211, 102, 0.2)",
-        transition: { duration: 0.14 },
-      }}
-    >
-      <BsWhatsapp className="text-xl md:text-2xl" />
-      Contactar por WhatsApp
-    </motion.a>
-  );
-}
-
-// Componente interno reutilizable (el botón en sí)
-function CtaButtonContent({
-  href,
-  className = "",
-}: {
-  href: string;
-  className?: string;
-}) {
-  return (
-    <motion.a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Contactar por WhatsApp"
-      className={`
-        group relative
-        inline-flex items-center gap-2.5 text-white
-        
-        px-7 py-4 rounded-xl rounded-bl-none
-        font-bold text-lg
-        shadow-md hover:shadow-xl
-        transition-shadow duration-300
-        focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2
-        bg-linear-to-bl from-blue-500 to-blue-700
-        ${className}
-      `}
-      whileHover={{
-        y: -3,
-        boxShadow: "0 12px 28px -8px rgba(37, 211, 102, 0.28)",
-        transition: {
-          type: "spring",
-          stiffness: 300,
-          damping: 28,
-        },
-      }}
-      whileTap={{
-        y: 1,
-        boxShadow: "0 4px 12px -4px rgba(37, 211, 102, 0.2)",
-        transition: { duration: 0.14 },
-      }}
-    >
-      <BsWhatsapp className="text-xl md:text-2xl" />
-      Contactar
-    </motion.a>
+    <CTAButton
+      size={size}
+      variant="primary"
+      className={cn("shadow-lg", className)}
+      {...props}
+    />
   );
 }

@@ -1,66 +1,83 @@
-// components/StepCard.tsx
-import { ReactNode } from "react";
-import { title as titleFont } from "@/app/page";
+// components/ui/StepCard.tsx
+import { AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-interface StepCardProps {
+
+type StepCardProps = {
   number: number | string;
   title: string;
-  text: string | ReactNode;
+  description: string;
+  tip?: string;
   className?: string;
-}
+};
 
 export function StepCard({
   number,
   title,
-  text,
-  className = "",
+  description,
+  tip,
+  className,
 }: StepCardProps) {
   return (
     <div
       className={cn(
         `
-      relative flex flex-col
-      rounded-2xl
-      border border-border
-      bg-card
-      p-6 md:p-8
-      h-full w-full
-      text-center
-      transition-all duration-300
-      hover:shadow-md
-    `,
+        relative flex h-full max-w-xl flex-col
+        rounded-xl border border-border
+        bg-card
+        shadow-sm
+        overflow-hidden
+        `,
         className,
       )}
     >
-      {/* Número */}
+      {/* Header */}
       <div
         className="
-      absolute -top-6 left-1/2 -translate-x-1/2
-      flex h-12 w-12 items-center justify-center
-      rounded-full
-      bg-primary text-primary-foreground
-      text-lg font-bold
-      ring-4 ring-background
-      shadow-sm
-    "
+          flex items-center gap-4
+          border-b border-border
+         
+        "
       >
-        {number}
-      </div>
-
-      {/* Contenido */}
-      <div className="mt-8 flex flex-col gap-3">
-        <h3
-          className={cn(
-            "text-xl md:text-2xl font-semibold tracking-tight text-foreground",
-            titleFont,
-          )}
+        <div
+          className="
+            flex h-12 w-12 items-center justify-center
+            rounded-xs
+            bg-primary/10
+            text-primary
+            font-bold text-xl
+            
+          "
         >
+          {number}
+        </div>
+
+        <h3 className="text-xl md:text-2xl font-semibold text-foreground ">
           {title}
         </h3>
+      </div>
 
-        <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
-          {text}
+      {/* Content */}
+      <div className="flex flex-1 flex-col gap-4 px-4 py-4">
+        <p className="text-muted-foreground leading-relaxed text-balance">
+          {description}
         </p>
+
+        {/* Tip */}
+        {tip && (
+          <div
+            className="
+              mt-auto inline-flex items-center gap-2
+              rounded-lg
+              bg-primary/5
+              px-3 py-2
+              text-sm text-primary
+            "
+          >
+            <AlertCircle className="h-4 w-4 shrink-0" />
+            <span className="font-medium">Tip:</span>
+            <span>{tip}</span>
+          </div>
+        )}
       </div>
     </div>
   );
