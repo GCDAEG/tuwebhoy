@@ -30,7 +30,7 @@ const steps: { id: string; title: string; text: string }[] = [
 const StepsSection = ({}) => {
   return (
     <Section size="content" id="steps" className="py-20 bg-background">
-      <StaggerContainer
+      <div
         className="
       w-full 
       flex flex-col items-center justify-center
@@ -66,7 +66,7 @@ const StepsSection = ({}) => {
           variant="primary"
           className="rounded-md text-xl"
         />
-      </StaggerContainer>
+      </div>
     </Section>
   );
 };

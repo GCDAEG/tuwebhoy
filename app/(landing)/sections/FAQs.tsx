@@ -67,29 +67,26 @@ const faqs = [
 const FAQS = () => {
   return (
     <Section size="screen" id="faq" className="overflow-hidden bg-background">
-      <StaggerContainer
+      <div
         className={`
           w-full flex flex-col justify-center items-center
           gap-14 py-16
           ${base}
         `}
       >
-        <FadeIn>
-          <h3
-            className={`
+        <h3
+          className={`
               text-3xl md:text-4xl
               font-extrabold
               text-foreground
               ${title}
             `}
-          >
-            ¿Tenés dudas?
-          </h3>
-        </FadeIn>
+        >
+          ¿Tenés dudas?
+        </h3>
 
-        <FadeIn delay={0.15} className="w-full flex justify-center">
-          <div
-            className="
+        <div
+          className="
               w-full max-w-3xl
               bg-card
               border border-border
@@ -97,16 +94,16 @@ const FAQS = () => {
               shadow-md
               overflow-hidden
             "
-          >
-            <Accordion type="single" collapsible className="w-full text-start">
-              {faqs.map((faq) => (
-                <AccordionItem
-                  key={faq.id}
-                  value={faq.id}
-                  className="border-b border-border last:border-b-0"
-                >
-                  <AccordionTrigger
-                    className={`
+        >
+          <Accordion type="single" collapsible className="w-full text-start">
+            {faqs.map((faq) => (
+              <AccordionItem
+                key={faq.id}
+                value={faq.id}
+                className="border-b border-border last:border-b-0"
+              >
+                <AccordionTrigger
+                  className={`
                       px-5 py-4
                       md:text-lg
                       font-medium
@@ -114,26 +111,25 @@ const FAQS = () => {
                       hover:no-underline
                       ${titleH2}
                     `}
-                  >
-                    {faq.question}
-                  </AccordionTrigger>
+                >
+                  {faq.question}
+                </AccordionTrigger>
 
-                  <AccordionContent
-                    className="
+                <AccordionContent
+                  className="
                       px-5 pb-4
                       text-base md:text-lg
                       text-muted-foreground
                       leading-relaxed
                     "
-                  >
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </FadeIn>
-      </StaggerContainer>
+                >
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </div>
     </Section>
   );
 };

@@ -42,10 +42,9 @@ const FeatureSection = () => {
     <Section
       size="screen"
       id="features"
-      animate={false}
       className="bg-background flex items-center"
     >
-      <StaggerContainer
+      <div
         className="
           w-full py-16
           flex flex-col items-center
@@ -98,7 +97,7 @@ const FeatureSection = () => {
             </div>
           ))}
         </div>
-      </StaggerContainer>
+      </div>
     </Section>
   );
 };
