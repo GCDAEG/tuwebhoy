@@ -34,7 +34,7 @@ export function TagCarousel({ tags, size = "md" }: TagCarouselProps) {
   };
 
   return (
-    <div className="relative mt-4 flex items-center border">
+    <div className="relative mt-4 flex items-center">
       {/* Flecha izquierda */}
       {canScrollLeft && (
         <button

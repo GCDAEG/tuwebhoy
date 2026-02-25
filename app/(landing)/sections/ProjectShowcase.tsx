@@ -159,7 +159,7 @@ export default function ProjectShowcase({
                 </div>
 
                 {/* Content */}
-                <div className="p-5 flex flex-col gap-3 border">
+                <div className="p-5 flex flex-col gap-3">
                   <h3
                     className={`text-xl md:text-2xl font-semibold ${titleH2}`}
                   >
