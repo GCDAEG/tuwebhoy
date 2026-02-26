@@ -6,6 +6,7 @@ import WhereToBuy from "./(sections)/WhereToBuy";
 import CommonMistakes from "./(sections)/CommonMistakes";
 import DomainStepsSection from "./(sections)/DomainStepsSection";
 import { Separator } from "@/components/ui/separator";
+import { base } from "../layout";
 
 interface pageProps {}
 const domainSteps: {
@@ -39,11 +40,11 @@ const page: React.FC<pageProps> = ({}) => {
   return (
     <main
       id="domain-guide"
-      className="domain-guide-theme flex min-h-screen flex-col relative p-0 md:p-0 xl:p-0  items-center"
+      className={`domain-guide-theme flex min-h-screen flex-col relative p-0 md:p-0 xl:p-0  items-center ${base}`}
     >
       <DomainIntro />
       <Separator className=" bg-muted-foreground/30 max-w-xs md:max-w-lg" />
-      <div className="w-full bg-background">
+      <div className="w-full bg-background flex flex-col items-center">
         <WhatIsDomain />
         <Separator className=" bg-muted-foreground/30 max-w-xs md:max-w-lg" />
         <DomainProvider />

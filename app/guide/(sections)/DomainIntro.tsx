@@ -4,23 +4,26 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe } from "lucide-react";
 import { Section } from "@/components/layout/Section";
 import TypewriterDomains from "@/components/ui/TypeWriterDomains";
+import { title } from "@/app/layout";
 
 export default function DomainIntro() {
   return (
     <Section
-      size="screen"
-      className="relative overflow-hidden bg-linear-to-br  py-20"
+      height="screen"
+      className="relative overflow-hidden bg-linear-to-br flex  py-20"
       id="intro"
     >
-      <div className="container flex justify-center items-end md:items-center">
-        <div className="text-start md:text-center flex flex-col justify-center items-center">
+      <div className="container flex justify-center md:items-center h-full border">
+        <div className=" text-center flex flex-col justify-center items-center">
           <div className="inline-flex  items-center gap-2 rounded-full bg-indigo-100 px-4 py-2 text-indigo-700 mb-6">
             <Globe className="h-5 w-5" />
             <span className="text-sm font-medium">Guía completa 2025</span>
           </div>
 
           <div className="w-full flex flex-col">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-6">
+            <h1
+              className={`text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-6 ${title}`}
+            >
               Todo lo que necesitas saber para registrar tu dominio perfecto
             </h1>
 

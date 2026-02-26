@@ -37,20 +37,24 @@ const domainFacts = [
 export default function WhatIsDomain() {
   return (
     <Section
-      size="content"
+      height="content"
       className="py-20 bg-background rounded-md border-border"
       id="what-is"
     >
       <div className="container">
         {/* Título de sección */}
-        <div className="text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-4 py-2 text-indigo-700 mb-6">
-            <Globe className="h-5 w-5" />
-            <span className="text-sm font-medium">Conceptos básicos</span>
+        <div className="">
+          <div className="flex justify-center w-full">
+            <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-4 py-2 text-indigo-700 mb-6">
+              <Globe className="h-5 w-5" />
+              <span className="text-sm font-medium">Conceptos básicos</span>
+            </div>
           </div>
 
           <div className="flex flex-col gap-10 w-full items-start ">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl w-full md:text-center font-bold tracking-tight text-foreground/90 mb-6">
+            <h2
+              className={`${titleH2} text-3xl md:text-5xl w-full text-center font-bold tracking-tight text-foreground/90 mb-6`}
+            >
               ¿Qué es un dominio exactamente?
             </h2>
             <div className="flex justify-center w-full h-12 items-center">

@@ -25,47 +25,44 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
     >
       {/* Logo */}
       <div>
-        <AnimatePresence mode="wait">
-          {isScrolled && (
-            <motion.div
-              key="logo"
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.2 }}
-              className="w-full flex-col h-full text-primary-foreground rounded-full flex justify-center items-center font-bold bg-black"
-            >
-              <Logo className="w-32" />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div
+          key="logo"
+          className="w-full flex-col h-full text-primary-foreground rounded-full flex justify-center items-center font-bold bg-black"
+        >
+          <Logo className="w-32" />
+        </div>
       </div>
 
       {/* Desktop menu */}
-      <ul className="hidden lg:flex gap-3 items-center h-full relative text-foreground ">
+      <ul className="hidden lg:flex gap-2 items-center h-full relative text-foreground ">
         {sections.map((sec) => (
           <li key={sec.id} className="relative h-full flex items-center">
             <Button
               variant={"ghost"}
-              className={`flex justify-center gap-2 items-center transition-all duration-700 `}
+              className={`flex justify-center  items-center transition-all duration-700 p-0`}
               type="button"
             >
-              {sec.icon && (
-                <AppIcon name={sec.icon} className="size-5 text-accent" />
-              )}
               <Link
                 href={`${sec.href ? sec.href : `/#${sec.id}`}`}
-                className="text-sm md:text-md font-medium relative hover:text-primary cursor-pointer"
+                className="flex gap-3 items-center text-sm md:text-md font-medium relative hover:text-primary cursor-pointer px-2"
               >
+                {sec.icon && (
+                  <AppIcon name={sec.icon} className="size-5 text-accent" />
+                )}
+
                 {<p>{sec.label}</p>}
               </Link>
             </Button>
 
             {activeSection === sec.id && (
               <motion.span
-                layoutId="nav-pill"
-                className="absolute inset-0 rounded-full bg-accent/20 -z-10"
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                layoutId="nav-indicator"
+                className="absolute w-full bottom-0 left-0 h-0.5 bg-primary rounded-full"
+                transition={{
+                  type: "tween", // ← en vez de spring
+                  duration: 0.18, // muy corto para que no se note el retraso
+                  ease: [0.4, 0, 0.2, 1], // easeOut fuerte
+                }}
               />
             )}
           </li>

@@ -79,20 +79,22 @@ const priceComparison = [
 export default function WhereToBuy() {
   return (
     <Section
-      size="content"
-      className={`py-20 md:py-32 bg-background ${title}`}
+      height="content"
+      className={`py-20 md:py-32 bg-background `}
       id="where-to-buy"
     >
       <div className="container flex flex-col gap-16">
         {/* Título */}
         <div className="md:text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-4 py-2 text-indigo-700 mb-6">
-            <DollarSign className="h-5 w-5" />
-            <span className="text-sm font-medium">Proceso de compra</span>
+          <div className="flex w-full justify-center items-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-4 py-2 text-indigo-700 mb-6">
+              <DollarSign className="h-5 w-5" />
+              <span className="text-sm font-medium">Proceso de compra</span>
+            </div>
           </div>
 
           <h2
-            className={`${title} text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 mb-6`}
+            className={`${titleH2} text-3xl md:text-5xl text-center font-bold tracking-tight text-gray-900 mb-6`}
           >
             Dónde y cómo comprar tu dominio paso a paso
           </h2>

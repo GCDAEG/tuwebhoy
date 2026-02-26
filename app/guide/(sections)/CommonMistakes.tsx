@@ -46,7 +46,7 @@ const mistakes = [
 
 export default function CommonMistakes() {
   return (
-    <Section size="content" id="common-mistakes" className="py-20">
+    <Section height="content" id="common-mistakes" className="py-20">
       <div className="container mx-auto flex flex-col gap-20">
         {/* Header */}
         <div className="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto">
@@ -56,7 +56,7 @@ export default function CommonMistakes() {
           </div>
 
           <h2
-            className={`${title} text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight`}
+            className={`${titleH2} text-3xl md:text-5xl font-bold tracking-tight`}
           >
             Errores comunes al comprar un dominio
           </h2>

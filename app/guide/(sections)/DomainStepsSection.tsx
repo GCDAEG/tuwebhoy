@@ -56,7 +56,7 @@ const steps = [
 
 export default function DomainStepsSection() {
   return (
-    <Section id="steps" size="content" className="py-24 bg-background">
+    <Section id="steps" height="content" className="py-24 bg-background">
       <div className="container flex flex-col gap-20">
         {/* Header */}
         <div className="text-center flex flex-col gap-6">

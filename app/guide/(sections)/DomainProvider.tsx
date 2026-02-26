@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, ExternalLink, ShieldCheck, Star } from "lucide-react";
 import { Section } from "@/components/layout/Section";
-import { title } from "@/app/layout";
+import { title, titleH2 } from "@/app/layout";
 
 const providers = [
   {
@@ -60,7 +60,7 @@ const providers = [
 
 export default function DomainProvider() {
   return (
-    <Section size="content" id="providers" className="py-24">
+    <Section height="content" id="providers" className="py-24">
       <div className="container flex flex-col gap-16">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto">
@@ -70,7 +70,7 @@ export default function DomainProvider() {
           </div>
 
           <h2
-            className={`${title} text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-6`}
+            className={`${titleH2} text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-6 `}
           >
             Mejores registradores de dominios en 2025
           </h2>

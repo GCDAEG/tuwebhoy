@@ -142,17 +142,7 @@ export function SectionNavbar() {
   //   }
   // }, [pathname]);
   return (
-    <motion.div
-      ref={ref}
-      className="sticky top-0 z-50"
-      animate={{
-        backgroundColor: isScrolled ? "var(--sidebar)" : "",
-        opacity: isScrolled ? 1 : 0.92,
-        boxShadow: isScrolled ? "0 4px 12px rgba(0,0,0,0.08)" : "none",
-        backdropFilter: isScrolled ? "blur(10px)" : "blur(4px)",
-      }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-    >
+    <div ref={ref} className="sticky top-0 z-50 bg-sidebar shadow-sm">
       <DesktopMenu
         activeSection={resolvedActiveSection}
         scrollToSection={scrollToSection}
@@ -166,6 +156,6 @@ export function SectionNavbar() {
         sections={sections}
         isScrolled={isScrolled}
       />
-    </motion.div>
+    </div>
   );
 }

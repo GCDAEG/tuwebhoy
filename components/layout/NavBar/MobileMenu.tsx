@@ -37,24 +37,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   return (
     <motion.div
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className={`mx-auto max-w-7xl px-4 md:px-6 lg:px-8 h-14 flex justify-between items-center backdrop-blur lg:hidden`}
+      className={`mx-auto max-w-7xl px-4 md:px-6 lg:px-8 h-14 flex justify-between items-center backdrop-blur lg:hidden `}
     >
       {/* Logo */}
       <div>
-        <AnimatePresence mode="wait">
-          {isScrolled && (
-            <motion.div
-              key="logo"
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.2 }}
-              className="w-full flex-col h-full text-primary-foreground rounded-full flex justify-center items-center font-bold bg-black"
-            >
-              <Logo className="w-32" />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div
+          key="logo"
+          className="w-full flex-col h-full text-primary-foreground rounded-full flex justify-center items-center font-bold bg-black"
+        >
+          <Logo className="w-32" />
+        </div>
       </div>
       <Sheet open={open} onOpenChange={handlerOpen}>
         <SheetTrigger
@@ -83,17 +75,17 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   <SheetClose asChild>
                     <Button
                       variant={"ghost"}
-                      className="flex w-full justify-start gap-5 items-center"
+                      className={`flex w-full justify-start gap-5 items-center ${activeSection === sec.id ? "bg-accent/20" : ""}`}
                       type="button"
                       onClick={() => handlerOpen(!open)}
                     >
-                      {sec.icon && (
-                        <AppIcon name={sec.icon} className="size-5" />
-                      )}
                       <Link
                         href={`${sec.href ? sec.href : `/#${sec.id}`}`}
-                        className="text-sm md:text-md font-medium relative hover:text-primary cursor-pointer"
+                        className="flex items-center gap-3 w-full text-sm md:text-md font-medium relative hover:text-primary cursor-pointer"
                       >
+                        {sec.icon && (
+                          <AppIcon name={sec.icon} className="size-5" />
+                        )}
                         {<p>{sec.label}</p>}
                       </Link>
                     </Button>
