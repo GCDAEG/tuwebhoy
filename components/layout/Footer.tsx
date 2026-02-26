@@ -40,12 +40,7 @@ export function FooterSection() {
   };
   return (
     <footer className="relative w-full py-5 bg-secondary">
-      <Section
-        className="flex flex-col gap-5"
-        size="content"
-        animate={false}
-        lazy={false}
-      >
+      <Section className="flex flex-col gap-5" height="content" lazy={false}>
         <div className=" flex flex-col w-full gap-5">
           {/* Brand */}
 
