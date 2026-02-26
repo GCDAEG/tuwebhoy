@@ -47,7 +47,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
           <li key={sec.id} className="relative h-full flex items-center">
             <Button
               variant={"ghost"}
-              className="flex justify-start gap-2 items-center"
+              className={`flex justify-center gap-2 items-center transition-all duration-700 `}
               type="button"
             >
               {sec.icon && (
@@ -63,13 +63,9 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
 
             {activeSection === sec.id && (
               <motion.span
-                layoutId="nav-indicator"
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 30,
-                }}
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent rounded-full"
+                layoutId="nav-pill"
+                className="absolute inset-0 rounded-full bg-accent/20 -z-10"
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
             )}
           </li>

@@ -11,7 +11,8 @@ const NAVBAR_HEIGHT = 56;
 const SCROLL_THRESHOLD = 100;
 
 export function SectionNavbar() {
-  const [activeSection, setActiveSection] = useState("hero");
+  const [activeSection, setActiveSection] = useState("");
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
@@ -76,25 +77,29 @@ export function SectionNavbar() {
      IntersectionObserver (CLAVE DEL FIX)
   --------------------------------------------- */
   useEffect(() => {
-    if (!pathname.startsWith("/") || pathname.startsWith("/guias")) {
-      return;
-    }
+    // if (!pathname.startsWith("/") || pathname.startsWith("/guias")) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         const visibleEntries = entries.filter((e) => e.isIntersecting);
         if (visibleEntries.length === 0) return;
 
-        // Ordenamos por intersectionRatio descendente → la más visible gana
         const mostVisible = visibleEntries.reduce((prev, curr) =>
           curr.intersectionRatio > prev.intersectionRatio ? curr : prev,
         );
 
-        setActiveSection(mostVisible.target.id);
+        const newId = mostVisible.target.id;
+
+        // Debounce: solo actualizamos si pasa 80-120ms sin cambios
+        // if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+        timeoutRef.current = setTimeout(() => {
+          setActiveSection(newId);
+        }, 80); // ← prueba entre 60-150ms, 80 suele ser dulce spot
       },
       {
         threshold: [0.4, 0.45, 0.5, 0.6],
-        rootMargin: `-${NAVBAR_HEIGHT + 20}px 0px -20% 0px`, // -navbar arriba + margen abajo
+        rootMargin: `-${NAVBAR_HEIGHT + 20}px 0px -20% 0px`,
       },
     );
 
@@ -103,7 +108,10 @@ export function SectionNavbar() {
       if (el) observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, [pathname]);
 
   /* ---------------------------------------------

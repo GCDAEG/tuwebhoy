@@ -13,16 +13,7 @@ import { base } from "./layout";
 import ProjectShowcase from "./(landing)/sections/ProjectShowcase";
 export default function HomePage() {
   const ctaRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (window.location.hash) {
-      const id = window.location.hash.replace("#", "");
 
-      // pequeño delay para asegurar render completo
-      setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      }, 50);
-    }
-  }, []);
   return (
     <main className={`min-h-screen w-full  ${base} overflow-x-hidden`}>
       {/* Hero / Header full viewport */}
