@@ -66,12 +66,7 @@ export default function ProjectShowcase({
   const data = projects ?? fallbackProjects;
 
   return (
-    <Section
-      id="projects"
-      size="content"
-      animate={false}
-      className="py-20 bg-background"
-    >
+    <Section id="projects" height="content" className="py-20 bg-background">
       <div className="container flex flex-col gap-14">
         {/* Header */}
         <div className="text-center">

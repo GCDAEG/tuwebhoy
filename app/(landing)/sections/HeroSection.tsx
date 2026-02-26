@@ -9,15 +9,14 @@ import HeroGeometric2 from "@/components/ui/HeroGeometric2";
 const HeroSection = ({}) => {
   return (
     <Section
-      size="screen"
-      className={` justify-center 
+      height="screen"
+      className={`flex
           ${titleFont}`}
       id="hero"
     >
-      <div className="flex flex-col items-center justify-end it gap-5 xl:flex-row py-5 md:p-0">
-        <div className="flex-1 flex justify-center items-center w-full h-full">
+      <div className="flex flex-col h-full  items-center justify-end gap-5 xl:flex-row py-5 md:p-0">
+        <div className="flex-1 flex justify-center items-center w-full h-full ">
           {/* <Option1CirclesPulse /> */}
-
           <HeroGeometric2 />
         </div>
         <div className="flex flex-1 flex-col gap-5 md:gap-6 xl:gap-5 md:justify-center">

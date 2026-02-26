@@ -5,129 +5,155 @@ import { motion } from "framer-motion";
 import MobileMenu from "./NavBar/MobileMenu";
 import DesktopMenu from "./NavBar/DesktopMenu";
 import { sections } from "@/lib/section";
+import { usePathname } from "next/navigation";
 
 const NAVBAR_HEIGHT = 56;
-const SCROLL_THRESHOLD = 100; // píxeles de scroll para activar el modo "scrolled"
+const SCROLL_THRESHOLD = 100;
 
 export function SectionNavbar() {
   const [activeSection, setActiveSection] = useState("hero");
   const [isScrolled, setIsScrolled] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  // const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // Scroll suave restando altura del navbar
+  /* ---------------------------------------------
+     Scroll suave
+  --------------------------------------------- */
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
 
     const y =
       el.getBoundingClientRect().top + window.pageYOffset - NAVBAR_HEIGHT;
+
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 
-  // Actualizar altura del navbar en resize
+  /* ---------------------------------------------
+     Resolver sección activa según ruta
+  --------------------------------------------- */
+  const resolvedActiveSection = (() => {
+    if (pathname.startsWith("/guide")) return "domain-guide";
+    if (pathname === "/terminos") return "terminos";
+    return activeSection;
+  })();
+
+  /* ---------------------------------------------
+     Altura dinámica del navbar
+  --------------------------------------------- */
   useEffect(() => {
-    const updateNavbarHeight = () => {
+    let rafId: number;
+
+    const update = () => {
       if (ref.current) {
-        const height = ref.current.offsetHeight;
         document.documentElement.style.setProperty(
           "--navbar-height",
-          `${height}px`,
+          `${ref.current.offsetHeight}px`,
         );
-        console.log("Altura actualizada:", height); // ← para debuggear
       }
     };
 
-    // Ejecutar inmediatamente al montar
-    updateNavbarHeight();
+    const debouncedUpdate = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(update);
+    };
 
-    // Observar cambios en el tamaño del navbar (cuando banner entra/sale)
-    const resizeObserver = new ResizeObserver(updateNavbarHeight);
-    if (ref.current) {
-      resizeObserver.observe(ref.current);
-    }
+    update();
+    const ro = new ResizeObserver(debouncedUpdate);
+    if (ref.current) ro.observe(ref.current);
 
-    // También escuchar scroll (por si hay algún cambio sutil)
-    window.addEventListener("scroll", updateNavbarHeight);
-
-    // Y resize de ventana (ya lo tenías)
-    window.addEventListener("resize", updateNavbarHeight);
+    window.addEventListener("resize", debouncedUpdate);
 
     return () => {
-      resizeObserver.disconnect();
-      window.removeEventListener("scroll", updateNavbarHeight);
-      window.removeEventListener("resize", updateNavbarHeight);
+      ro.disconnect();
+      window.removeEventListener("resize", debouncedUpdate);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
-  // Detectar sección activa con IntersectionObserver
+  /* ---------------------------------------------
+     IntersectionObserver (CLAVE DEL FIX)
+  --------------------------------------------- */
   useEffect(() => {
+    if (!pathname.startsWith("/") || pathname.startsWith("/guias")) {
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
-            setActiveSection(entry.target.id);
-          }
-        });
+        const visibleEntries = entries.filter((e) => e.isIntersecting);
+        if (visibleEntries.length === 0) return;
+
+        // Ordenamos por intersectionRatio descendente → la más visible gana
+        const mostVisible = visibleEntries.reduce((prev, curr) =>
+          curr.intersectionRatio > prev.intersectionRatio ? curr : prev,
+        );
+
+        setActiveSection(mostVisible.target.id);
       },
-      { threshold: [0.4] },
+      {
+        threshold: [0.4, 0.45, 0.5, 0.6],
+        rootMargin: `-${NAVBAR_HEIGHT + 20}px 0px -20% 0px`, // -navbar arriba + margen abajo
+      },
     );
 
-    sections.forEach((sec) => {
-      const el = document.getElementById(sec.id);
+    sections.forEach((s) => {
+      const el = document.getElementById(s.id);
       if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
-  // Detectar scroll > threshold (con throttle suave)
+  /* ---------------------------------------------
+     Scroll > threshold
+  --------------------------------------------- */
   useEffect(() => {
-    let ticking = false;
-
     const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
-          ticking = false;
-        });
-        ticking = true;
-      }
+      setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    // Verificar al montar (por si ya está scrolleado)
     onScroll();
 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  // useEffect(() => {
+  //   const resetActiveSection = () => {
+  //     setActiveSection("hero");
+  //   };
+  //   const activeGuide = () => {
+  //     setActiveSection("domain-guide");
+  //   };
+  //   if (pathname.startsWith("/") && !pathname.startsWith("/guias")) {
+  //     resetActiveSection();
+  //   }
+  //   if (pathname.startsWith("/guide")) {
+  //     activeGuide();
+  //   }
+  // }, [pathname]);
   return (
     <motion.div
       ref={ref}
+      className="sticky top-0 z-50"
       animate={{
-        // Fondo base: siempre el color de --sidebar (que cambia según light/dark)
         backgroundColor: isScrolled ? "var(--sidebar)" : "",
-
-        // Opacidad: baja cuando NO está scrolleado (banner visible), completa cuando sí
-        opacity: isScrolled ? 1 : 0.92, // 0.92 = 92% opaco (ajustá este valor)
-
-        // Sombra solo cuando scrolleó
+        opacity: isScrolled ? 1 : 0.92,
         boxShadow: isScrolled ? "0 4px 12px rgba(0,0,0,0.08)" : "none",
-
-        // Opcional: blur para que se vea "pegado" al fondo en scrolled
         backdropFilter: isScrolled ? "blur(10px)" : "blur(4px)",
       }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`sticky top-0 z-50 `}
     >
       <DesktopMenu
-        activeSection={activeSection}
+        activeSection={resolvedActiveSection}
         scrollToSection={scrollToSection}
         sections={sections}
         isScrolled={isScrolled}
       />
-      {/* Mobile menu */}
+
       <MobileMenu
-        activeSection={activeSection}
+        activeSection={resolvedActiveSection}
         scrollToSection={scrollToSection}
         sections={sections}
         isScrolled={isScrolled}

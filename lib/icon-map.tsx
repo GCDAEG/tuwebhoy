@@ -13,6 +13,7 @@ import { BsQuestion } from "react-icons/bs";
 import { BiSolidHome } from "react-icons/bi";
 import { PiStepsFill } from "react-icons/pi";
 import { MdWorkspacesFilled } from "react-icons/md";
+import { RiGuideFill } from "react-icons/ri";
 
 export const iconMap = {
   // lucide
@@ -30,6 +31,7 @@ export const iconMap = {
   BiSolidHome,
   PiStepsFill,
   MdWorkspacesFilled,
+  RiGuideFill,
 };
 
 export type IconName = keyof typeof iconMap;

@@ -66,7 +66,7 @@ const faqs = [
 
 const FAQS = () => {
   return (
-    <Section size="screen" id="faq" className="overflow-hidden bg-background">
+    <Section height="screen" id="faq" className=" bg-background">
       <div
         className={`
           w-full flex flex-col justify-center items-center

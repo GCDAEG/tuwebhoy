@@ -6,52 +6,45 @@ import { cn } from "@/lib/utils";
 
 type SectionProps = {
   id?: string;
-  className?: string;
   children: React.ReactNode;
-  size: "screen" | "content";
+  className?: string;
+  height?: "screen" | "content";
   lazy?: boolean;
-  animate?: boolean;
+  animate?: "fade" | "none";
   threshold?: number;
 };
 
 export function Section({
   id,
-  className,
   children,
-  size,
-  lazy = true,
-  animate = false,
+  className,
+  height = "content",
+  lazy = false,
+  animate = "none",
   threshold = 0.1,
 }: SectionProps) {
   const ref = useRef<HTMLElement>(null);
 
   const isInView = useInView(ref, {
     once: true,
-    margin: "-100px",
+    margin: "-80px",
     amount: threshold,
   });
-
-  const shouldRender = lazy ? isInView : true;
 
   return (
     <section
       id={id}
       ref={ref}
       className={cn(
-        `
-        px-5 md:px-6 lg:px-28
-        relative w-full flex
-        ${
-          size === "screen"
-            ? "min-h-[calc(100vh-var(--navbar-height))] scroll-mt-(--navbar-height)"
-            : "h-fit"
-        }
-        `,
-        animate && isInView && "animate-fade-in",
+        "relative w-full px-5 md:px-6 lg:px-28",
+        height === "screen" &&
+          "min-h-[calc(100vh-var(--navbar-height))] scroll-mt-(--navbar-height)",
         className,
       )}
     >
-      {shouldRender ? children : null}
+      <div className={cn(animate === "fade" && isInView && "animate-fade-in")}>
+        {!lazy || isInView ? children : null}
+      </div>
     </section>
   );
 }

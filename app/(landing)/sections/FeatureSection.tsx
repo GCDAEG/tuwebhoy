@@ -40,7 +40,7 @@ const features: { id: string; title: string; text: string }[] = [
 const FeatureSection = () => {
   return (
     <Section
-      size="screen"
+      height="screen"
       id="features"
       className="bg-background flex items-center"
     >

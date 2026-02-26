@@ -15,6 +15,7 @@ import { RiGuideFill } from "react-icons/ri";
 import { Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AppIcon } from "@/lib/AppIcon";
+import { Button } from "@/components/ui/button";
 interface MobileMenuProps {
   sections: NavSection[];
   scrollToSection: (id: string) => void;
@@ -80,26 +81,28 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               {sections.map((sec) => (
                 <li key={sec.id}>
                   <SheetClose asChild>
-                    <button
-                      onClick={() => scrollToSection(sec.id)}
-                      className={cn(
-                        "w-full flex items-center gap-3 rounded-lg px-4 py-3 text-sidebar-foreground transition-colors hover:bg-muted",
-                        activeSection === sec.id &&
-                          "bg-accent/50 text-sidebar-foreground font-semibold",
-                      )}
+                    <Button
+                      variant={"ghost"}
+                      className="flex w-full justify-start gap-5 items-center"
+                      type="button"
+                      onClick={() => handlerOpen(!open)}
                     >
                       {sec.icon && (
                         <AppIcon name={sec.icon} className="size-5" />
                       )}
-
-                      <span>{sec.label}</span>
-                    </button>
+                      <Link
+                        href={`${sec.href ? sec.href : `/#${sec.id}`}`}
+                        className="text-sm md:text-md font-medium relative hover:text-primary cursor-pointer"
+                      >
+                        {<p>{sec.label}</p>}
+                      </Link>
+                    </Button>
                   </SheetClose>
                 </li>
               ))}
               <li key={"domain-guide"}>
                 <SheetClose asChild>
-                  <button
+                  {/* <button
                     onClick={() => handlerOpen(!open)}
                     className="w-full flex items-center gap-3 rounded-lg px-4 py-3 text-sidebar-foreground transition-colors hover:bg-muted"
                   >
@@ -107,10 +110,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                       href="/guide"
                       className="flex gap-1.5 items-center text-foreground"
                     >
-                      <RiGuideFill className="size-5" />
                       <p>Guía de Dominios</p>
                     </Link>
-                  </button>
+                  </button> */}
                 </SheetClose>
               </li>
             </ul>

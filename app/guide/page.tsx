@@ -38,7 +38,7 @@ const domainSteps: {
 const page: React.FC<pageProps> = ({}) => {
   return (
     <main
-      id="guia-dominio"
+      id="domain-guide"
       className="domain-guide-theme flex min-h-screen flex-col relative p-0 md:p-0 xl:p-0  items-center"
     >
       <DomainIntro />

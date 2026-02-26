@@ -5,6 +5,7 @@ import Link from "next/link";
 import { RiGuideFill } from "react-icons/ri";
 import { NavSection } from "@/lib/section";
 import Logo from "@/components/ui/Logo";
+import { AppIcon } from "@/lib/AppIcon";
 interface DesktopMenuProps {
   sections: NavSection[];
   scrollToSection: (id: string) => void;
@@ -15,7 +16,6 @@ interface DesktopMenuProps {
 const DesktopMenu: React.FC<DesktopMenuProps> = ({
   activeSection,
   sections,
-  scrollToSection,
   isScrolled,
 }) => {
   return (
@@ -42,17 +42,24 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
       </div>
 
       {/* Desktop menu */}
-      <ul className="hidden lg:flex gap-6 items-center h-full relative text-foreground">
+      <ul className="hidden lg:flex gap-3 items-center h-full relative text-foreground ">
         {sections.map((sec) => (
-          <li key={sec.id} className="relative h-full">
-            <button
-              onClick={() =>
-                sec.id !== "domain-guide" ? scrollToSection(sec.id) : ""
-              }
-              className={`text-sm md:text-md font-medium h-full relative hover:text-primary cursor-pointer ${activeSection === sec.id ? "text-accent" : ""}`}
+          <li key={sec.id} className="relative h-full flex items-center">
+            <Button
+              variant={"ghost"}
+              className="flex justify-start gap-2 items-center"
+              type="button"
             >
-              <p>{sec.label}</p>
-            </button>
+              {sec.icon && (
+                <AppIcon name={sec.icon} className="size-5 text-accent" />
+              )}
+              <Link
+                href={`${sec.href ? sec.href : `/#${sec.id}`}`}
+                className="text-sm md:text-md font-medium relative hover:text-primary cursor-pointer"
+              >
+                {<p>{sec.label}</p>}
+              </Link>
+            </Button>
 
             {activeSection === sec.id && (
               <motion.span
@@ -67,12 +74,6 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
             )}
           </li>
         ))}
-        <Button asChild variant="outline" className="text-sm md:text-md ">
-          <Link href="/guide" className="flex gap-1.5 items-center">
-            <RiGuideFill />
-            <p>Guía de Dominios</p>
-          </Link>
-        </Button>
       </ul>
     </motion.div>
   );

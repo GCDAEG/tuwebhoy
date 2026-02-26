@@ -29,13 +29,15 @@ const steps: { id: string; title: string; text: string }[] = [
 
 const StepsSection = ({}) => {
   return (
-    <Section size="content" id="steps" className="py-20 bg-background">
+    <Section height="screen" id="steps" className="bg-background flex">
       <div
         className="
       w-full 
       flex flex-col items-center justify-center
       gap-16
       text-foreground
+      h-full
+      
     "
       >
         <h2

@@ -5,7 +5,8 @@
 export type NavSection = {
   id: string;
   label: string;
-  icon?: "HomeIcon" | "Globe" | "Building2" | "ShoppingCart" | "HelpCircle" | "AlertTriangle" | "ListOrdered" | "Star" | "BsQuestion" | "BiSolidHome" | "PiStepsFill" | "MdWorkspacesFilled"
+  href?:string;
+  icon?: "HomeIcon" | "Globe" | "Building2" | "ShoppingCart" | "HelpCircle" | "AlertTriangle" | "ListOrdered" | "Star" | "BsQuestion" | "BiSolidHome" | "PiStepsFill" | "MdWorkspacesFilled" |"RiGuideFill"
 };
 
 export const sections:NavSection[] = [
@@ -14,6 +15,7 @@ export const sections:NavSection[] = [
   { id: "steps", label: "Pasos", icon: "PiStepsFill" },
   { id: "projects", label: "Proyectos", icon: "MdWorkspacesFilled" },
   { id: "faq", label: "Preguntas", icon: "BsQuestion" },
+  { id: "domain-guide", href:"/guide" ,label: "Guía de dominios", icon: "RiGuideFill" },
 ];
 
 export const guideSections = [
