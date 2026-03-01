@@ -1,4 +1,3 @@
-import { useSmartNavigation } from "@/lib/hook";
 import { usePathname } from "next/navigation";
 
 const guideSections = [
@@ -9,7 +8,6 @@ const guideSections = [
 
 export function GuideSubNavbar() {
   const pathname = usePathname();
-  const { goToSection } = useSmartNavigation();
 
   if (!pathname.startsWith("/guide")) return null;
 
@@ -18,10 +16,7 @@ export function GuideSubNavbar() {
       <ul className="flex gap-4 px-4 overflow-x-auto">
         {guideSections.map((sec) => (
           <li key={sec.id}>
-            <button
-              onClick={() => goToSection(sec.id)}
-              className="py-3 text-sm whitespace-nowrap hover:text-accent"
-            >
+            <button className="py-3 text-sm whitespace-nowrap hover:text-accent">
               {sec.label}
             </button>
           </li>

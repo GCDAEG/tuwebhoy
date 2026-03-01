@@ -13,7 +13,7 @@ export default function DomainIntro() {
       className="relative overflow-hidden bg-linear-to-br flex  py-20"
       id="intro"
     >
-      <div className="container flex justify-center md:items-center h-full border">
+      <div className="container flex justify-center md:items-center h-full">
         <div className=" text-center flex flex-col justify-center items-center">
           <div className="inline-flex  items-center gap-2 rounded-full bg-indigo-100 px-4 py-2 text-indigo-700 mb-6">
             <Globe className="h-5 w-5" />
