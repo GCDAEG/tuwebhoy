@@ -12,8 +12,8 @@ const SCROLL_THRESHOLD = 100;
 
 export function SectionNavbar() {
   const [activeSection, setActiveSection] = useState("");
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   // const observerRef = useRef<IntersectionObserver | null>(null);
