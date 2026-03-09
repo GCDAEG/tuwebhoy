@@ -37,6 +37,7 @@ export function SectionNavbar() {
         activeSection={activeSection}
         isScrolled={isScrolled}
         isGuide={isGuide}
+        pathname={pathname}
       />
     </nav>
   );

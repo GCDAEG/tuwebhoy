@@ -21,12 +21,14 @@ interface MobileMenuProps {
   activeSection: string | null;
   isScrolled: boolean;
   isGuide: boolean;
+  pathname: string;
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({
   activeSection,
   sections,
   isGuide,
+  pathname,
 }) => {
   const [open, setOpen] = useState(false);
   const lenis = useLenis();
@@ -53,7 +55,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
     }
 
     if (sec.type === "scroll") {
-      if (isGuide) {
+      if (isGuide || pathname !== "/") {
         router.push(`/#${sec.id}`);
       } else {
         lenis?.scrollTo(`#${sec.id}`, {

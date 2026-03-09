@@ -19,6 +19,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
   activeSection,
   sections,
   isGuide,
+  pathname,
 }) => {
   const lenis = useLenis();
   const router = useRouter();
@@ -40,7 +41,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
     }
 
     if (sec.type === "scroll") {
-      if (isGuide) {
+      if (isGuide || pathname !== "/") {
         router.push(`/#${sec.id}`);
       } else {
         lenis?.scrollTo(`#${sec.id}`, {
