@@ -6,6 +6,7 @@ import { Merriweather, Montserrat, Inter, Roboto } from "next/font/google";
 import WhatsAppChatInput from "@/components/ui/WhatsAppChatInput";
 
 import type { Metadata } from "next";
+import PageLoader from "./PageLoader";
 const metadata: Metadata = {
   title: "Tu Web Hoy | Tu página web lista en días",
 
@@ -78,7 +79,7 @@ export default function RootLayout({
         "
       >
         {/* Opcional: capa extra para overlay si quieres más control */}
-
+        <PageLoader />
         <SectionNavbar />
         {children}
         <WhatsAppChatInput />

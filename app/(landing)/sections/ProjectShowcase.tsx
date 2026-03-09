@@ -27,35 +27,21 @@ interface ProjectShowcaseProps {
 
 const fallbackProjects: Project[] = [
   {
-    title: "Landing Fitness Gym",
-    description:
-      "Landing moderna enfocada en conversión, clases de prueba y experiencia mobile.",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEWtbfETAUbrP_SOzz5xEwLIVTyTi1QHjKDQ&s",
-    liveUrl: "https://demo-fitness.example.com",
-    repoUrl: "https://github.com/demo-user/fitness-landing-example",
-    tags: ["Next.js", "Tailwind", "Framer Motion"],
-  },
-  {
     title: "Estudio Jurídico Corporativo",
     description:
       "Diseño profesional para estudio de abogados con foco en confianza y contacto directo.",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEWtbfETAUbrP_SOzz5xEwLIVTyTi1QHjKDQ&s",
-    liveUrl: "https://demo-abogados.example.com",
+    image: "https://landing-abogados-eosin.vercel.app/preview.jpeg",
+    liveUrl: "https://landing-abogados-eosin.vercel.app",
     repoUrl: "https://github.com/demo-user/abogados-landing-example",
-    tags: [
-      "Next.js",
-      "shadcn/ui",
-      "Responsive",
-      "Responsiv2e",
-      "Respon3sive",
-      "Respon4ive",
-      "Respo5nsive",
-      "Respon6sive",
-      "Respo7nsive",
-      "Resp8onsive",
-    ],
+  },
+  {
+    title: "Gimnasio",
+    description:
+      "Landing moderna enfocada en conversión, clases de prueba y experiencia mobile.",
+    image: "https://gymexample-delta.vercel.app/preview.jpeg",
+    liveUrl: "https://gymexample-delta.vercel.app/",
+
+    repoUrl: "https://github.com/GCDAEG/gymexample.git",
   },
 ];
 

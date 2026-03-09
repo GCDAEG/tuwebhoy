@@ -29,7 +29,11 @@ const steps: { id: string; title: string; text: string }[] = [
 
 const StepsSection = ({}) => {
   return (
-    <Section height="screen" id="steps" className="bg-background flex">
+    <Section
+      height="screen"
+      id="steps"
+      className="bg-background flex justify-center items-center"
+    >
       <div
         className="
       w-full 
