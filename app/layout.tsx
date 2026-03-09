@@ -7,6 +7,7 @@ import WhatsAppChatInput from "@/components/ui/WhatsAppChatInput";
 
 import type { Metadata } from "next";
 import PageLoader from "./PageLoader";
+import ReactLenis from "lenis/react";
 const metadata: Metadata = {
   title: "Tu Web Hoy | Tu página web lista en días",
 
@@ -79,11 +80,13 @@ export default function RootLayout({
         "
       >
         {/* Opcional: capa extra para overlay si quieres más control */}
-        <PageLoader />
-        <SectionNavbar />
-        {children}
-        <WhatsAppChatInput />
-        <FooterSection />
+        <ReactLenis root>
+          <PageLoader />
+          <SectionNavbar />
+          {children}
+          <WhatsAppChatInput />
+          <FooterSection />
+        </ReactLenis>
       </body>
     </html>
   );

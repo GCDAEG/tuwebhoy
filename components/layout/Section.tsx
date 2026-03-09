@@ -37,8 +37,7 @@ export function Section({
       ref={ref}
       className={cn(
         "relative w-full px-5 md:px-6 lg:px-28",
-        height === "screen" &&
-          "min-h-[calc(100vh-var(--navbar-height))] scroll-mt-(--navbar-height)",
+        height === "screen" && "min-h-[calc(100vh-var(--navbar-height))]",
         className,
       )}
     >

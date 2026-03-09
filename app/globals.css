@@ -109,6 +109,8 @@ body {
 
   --gradient-accent-start: #2563eb;
   --gradient-accent-end: #60a5fa;
+  /* altura nav */
+  --navbar-height:56px;
 }
 .dark{
   /* Base */
@@ -185,6 +187,7 @@ body {
   --banner-overlay-dark-2: rgba(0, 0, 0, 0.075);
   --banner-overlay-dark-3: rgba(0, 0, 0, 0.05);
   --banner-overlay-dark-4: rgba(0, 0, 0, 0.025);
+  
 }
 /* Tema exclusivo para la guía de dominios (fondo blanco + acentos azules) */
 

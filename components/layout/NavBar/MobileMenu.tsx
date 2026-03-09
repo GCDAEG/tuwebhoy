@@ -9,30 +9,59 @@ import {
 import { FaBars } from "react-icons/fa";
 import Logo from "@/components/ui/Logo";
 import { NavSection } from "@/lib/section";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { RiGuideFill } from "react-icons/ri";
+import {} from "react-icons/ri";
 import { Heart } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { AppIcon } from "@/lib/AppIcon";
 import { Button } from "@/components/ui/button";
+import { useLenis } from "lenis/react";
+import { useRouter } from "next/navigation";
 interface MobileMenuProps {
   sections: NavSection[];
-  scrollToSection: (id: string) => void;
-  activeSection: string;
+  activeSection: string | null;
   isScrolled: boolean;
+  isGuide: boolean;
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({
   activeSection,
   sections,
-  scrollToSection,
-  isScrolled,
+  isGuide,
 }) => {
   const [open, setOpen] = useState(false);
+  const lenis = useLenis();
+  const router = useRouter();
 
   const handlerOpen = (e: boolean) => {
     setOpen(e);
+  };
+
+  const handleClickLink = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    sec: NavSection,
+  ) => {
+    e.preventDefault();
+
+    if (sec.type === "page" && sec.href) {
+      router.push(sec.href);
+      return;
+    }
+
+    if (sec.type === "home") {
+      router.push("/");
+      return;
+    }
+
+    if (sec.type === "scroll") {
+      if (isGuide) {
+        router.push(`/#${sec.id}`);
+      } else {
+        lenis?.scrollTo(`#${sec.id}`, {
+          offset: -56,
+          duration: 1.2,
+        });
+      }
+    }
   };
   return (
     <motion.div
@@ -79,15 +108,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                       type="button"
                       onClick={() => handlerOpen(!open)}
                     >
-                      <Link
-                        href={`${sec.href ? sec.href : `/#${sec.id}`}`}
+                      <button
+                        onClick={(e) => handleClickLink(e, sec)}
                         className="flex items-center gap-3 w-full text-sm md:text-md font-medium relative hover:text-primary cursor-pointer"
                       >
                         {sec.icon && (
                           <AppIcon name={sec.icon} className="size-5" />
                         )}
                         {<p>{sec.label}</p>}
-                      </Link>
+                      </button>
                     </Button>
                   </SheetClose>
                 </li>
