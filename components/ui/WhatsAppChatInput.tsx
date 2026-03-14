@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-const WHATSAPP_NUMBER = "5491234567890"; // ← tu número real
+const WHATSAPP_NUMBER = "543446648013"; // ← tu número real
 
 export default function WhatsAppChatInput() {
   const [message, setMessage] = useState("");
