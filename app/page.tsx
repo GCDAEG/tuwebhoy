@@ -1,9 +1,4 @@
 // app/page.tsx (o tu página principal)
-"use client";
-
-import { useEffect, useRef } from "react";
-
-import { FloatingCTA } from "@/components/ui/FloatingCTA";
 
 import FAQS from "@/app/(landing)/sections/FAQs";
 import HeroSection from "@/app/(landing)/sections/HeroSection";
@@ -12,7 +7,7 @@ import StepsSection from "@/app/(landing)/sections/StepsSection";
 import { base } from "./layout";
 import ProjectShowcase from "./(landing)/sections/ProjectShowcase";
 export default function HomePage() {
-  const ctaRef = useRef<HTMLDivElement>(null);
+  // const ctaRef = useRef<HTMLDivElement>(null);
 
   return (
     <main className={`min-h-screen w-full  ${base} overflow-x-hidden`}>
@@ -28,7 +23,7 @@ export default function HomePage() {
       {/* FAQS */}
       <FAQS />
       {/* Floating elements (globales) */}
-      <FloatingCTA targetRef={ctaRef} />
+      {/* <FloatingCTA targetRef={ctaRef} /> */}
       {/* <FloatingWhatsAppButton /> ← si lo tienes global */}
     </main>
   );

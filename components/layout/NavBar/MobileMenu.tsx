@@ -108,17 +108,17 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                       variant={"ghost"}
                       className={`flex w-full justify-start gap-5 items-center ${activeSection === sec.id ? "bg-accent/20" : ""}`}
                       type="button"
-                      onClick={() => handlerOpen(!open)}
+                      onClick={(e) => {
+                        handlerOpen(!open);
+                        handleClickLink(e, sec);
+                      }}
                     >
-                      <button
-                        onClick={(e) => handleClickLink(e, sec)}
-                        className="flex items-center gap-3 w-full text-sm md:text-md font-medium relative hover:text-primary cursor-pointer"
-                      >
+                      <div className="flex items-center gap-3 w-full text-sm md:text-md font-medium relative hover:text-primary cursor-pointer">
                         {sec.icon && (
                           <AppIcon name={sec.icon} className="size-5" />
                         )}
                         {<p>{sec.label}</p>}
-                      </button>
+                      </div>
                     </Button>
                   </SheetClose>
                 </li>

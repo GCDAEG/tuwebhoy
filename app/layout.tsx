@@ -1,13 +1,9 @@
 import "./globals.css";
-import { FooterSection } from "@/components/layout/Footer";
-import { SectionNavbar } from "@/components/layout/Nav";
 import { Merriweather, Montserrat, Inter, Roboto } from "next/font/google";
 
-import WhatsAppChatInput from "@/components/ui/WhatsAppChatInput";
-
 import type { Metadata } from "next";
-import PageLoader from "./PageLoader";
-import ReactLenis from "lenis/react";
+
+import ClientLayout from "./ClientLayout";
 export const metadata: Metadata = {
   title: {
     default: "Tu Web Hoy",
@@ -83,13 +79,7 @@ export default function RootLayout({
         "
       >
         {/* Opcional: capa extra para overlay si quieres más control */}
-        <ReactLenis root>
-          <PageLoader />
-          <SectionNavbar />
-          {children}
-          <WhatsAppChatInput />
-          <FooterSection />
-        </ReactLenis>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

@@ -1,5 +1,4 @@
 // components/portfolio/ProjectShowcase.tsx
-"use client";
 
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";

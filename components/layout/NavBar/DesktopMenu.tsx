@@ -77,9 +77,9 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
               variant={"ghost"}
               className={`flex justify-center p-0 items-center transition-all duration-700`}
               type="button"
+              onClick={(e) => handleClickLink(e, sec)}
             >
-              <button
-                onClick={(e) => handleClickLink(e, sec)}
+              <div
                 className={cn(
                   "flex gap-3 items-center text-sm md:text-md font-medium relative hover:text-primary cursor-pointer px-2",
                 )}
@@ -89,7 +89,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
                 )}
 
                 {<p>{sec.label}</p>}
-              </button>
+              </div>
             </Button>
           </li>
         ))}
