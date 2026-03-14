@@ -8,8 +8,11 @@ import WhatsAppChatInput from "@/components/ui/WhatsAppChatInput";
 import type { Metadata } from "next";
 import PageLoader from "./PageLoader";
 import ReactLenis from "lenis/react";
-const metadata: Metadata = {
-  title: "Tu Web Hoy | Tu página web lista en días",
+export const metadata: Metadata = {
+  title: {
+    default: "Tu Web Hoy",
+    template: "%s | Tu Web Hoy",
+  },
 
   description:
     "Creamos páginas web simples y modernas para emprendedores. Ideales para mostrar tu negocio y empezar a vender.",
