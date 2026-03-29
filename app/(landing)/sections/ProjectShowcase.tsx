@@ -42,6 +42,24 @@ const fallbackProjects: Project[] = [
 
     repoUrl: "https://github.com/GCDAEG/gymexample.git",
   },
+  {
+    title: "Hospedaje",
+    description:
+      "Landing moderna enfocada en conversión, clases de prueba y experiencia mobile.",
+    image: "https://hospedajedemo2.vercel.app/preview.jpeg",
+    liveUrl: "https://hospedajedemo2.vercel.app/",
+
+    repoUrl: "https://github.com/GCDAEG/gymexample.git",
+  },
+  {
+    title: "Hospedaje 2",
+    description:
+      "Landing moderna enfocada en conversión, clases de prueba y experiencia mobile.",
+    image: "https://hospedajedemo.vercel.app/preview.jpeg",
+    liveUrl: "https://hospedajedemo.vercel.app/",
+
+    repoUrl: "https://github.com/GCDAEG/gymexample.git",
+  },
 ];
 
 export default function ProjectShowcase({

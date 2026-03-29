@@ -4,8 +4,6 @@ import { FadeIn } from "../../../components/motion/FadeIn";
 import { StepCard } from "../../../components/ui/StepCard";
 import { CTAButton } from "../../../components/ui/CTAButton";
 import { Section } from "@/components/layout/Section";
-import { title } from "@/app/layout";
-
 // interface StepsSectionProps {
 
 // }
@@ -48,7 +46,7 @@ const StepsSection = ({}) => {
           className={`text-4xl md:text-5xl
           font-bold
           tracking-tight
-          text-center md:text-center ${title}`}
+          text-center md:text-center `}
         >
           Tu web en pocos pasos
         </h2>
