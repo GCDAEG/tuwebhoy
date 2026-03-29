@@ -32,7 +32,7 @@ const HeroSection = ({}) => {
           <div className="w-full flex  pt-5">
             <HeroCTAButton
               text="Empezar por WhatsApp"
-              href="https://wa.me/549..."
+              href="https://wa.me/543446648013"
               className="rounded-tl-md rounded-br-md text-sm md:text-lg"
             />
             {/* <a className="flex space-x-5 rounded-bl-md w-fit px-5 py-2 font-bold text-xs items-center ">
