@@ -42,16 +42,16 @@ const fallbackProjects: Project[] = [
   {
     title: "Hospedaje",
     description:
-      "Landing moderna enfocada en conversión, clases de prueba y experiencia mobile.",
-    image: "https://hospedajedemo2.vercel.app/preview.jpeg",
-    liveUrl: "https://hospedajedemo2.vercel.app/",
+      "Landing moderna enfocada en reservas, clases de prueba y experiencia mobile.",
+    image: "https://hospedajedemo.vercel.app/preview.jpeg",
+    liveUrl: "https://hospedajedemo.vercel.app/",
   },
   {
     title: "Hospedaje 2",
     description:
       "Landing moderna enfocada en conversión, clases de prueba y experiencia mobile.",
-    image: "https://hospedajedemo.vercel.app/preview.jpeg",
-    liveUrl: "https://hospedajedemo.vercel.app/",
+    image: "https://hospedajedemo2.vercel.app/preview1.jpeg",
+    liveUrl: "https://hospedajedemo2.vercel.app/",
   },
 ];
 
