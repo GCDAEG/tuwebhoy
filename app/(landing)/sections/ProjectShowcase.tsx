@@ -31,7 +31,6 @@ const fallbackProjects: Project[] = [
       "Diseño profesional para estudio de abogados con foco en confianza y contacto directo.",
     image: "https://landing-abogados-eosin.vercel.app/preview.jpeg",
     liveUrl: "https://landing-abogados-eosin.vercel.app",
-    repoUrl: "https://github.com/demo-user/abogados-landing-example",
   },
   {
     title: "Gimnasio",
@@ -39,8 +38,6 @@ const fallbackProjects: Project[] = [
       "Landing moderna enfocada en conversión, clases de prueba y experiencia mobile.",
     image: "https://gymexample-delta.vercel.app/preview.jpeg",
     liveUrl: "https://gymexample-delta.vercel.app/",
-
-    repoUrl: "https://github.com/GCDAEG/gymexample.git",
   },
   {
     title: "Hospedaje",
@@ -48,8 +45,6 @@ const fallbackProjects: Project[] = [
       "Landing moderna enfocada en conversión, clases de prueba y experiencia mobile.",
     image: "https://hospedajedemo2.vercel.app/preview.jpeg",
     liveUrl: "https://hospedajedemo2.vercel.app/",
-
-    repoUrl: "https://github.com/GCDAEG/gymexample.git",
   },
   {
     title: "Hospedaje 2",
@@ -57,8 +52,6 @@ const fallbackProjects: Project[] = [
       "Landing moderna enfocada en conversión, clases de prueba y experiencia mobile.",
     image: "https://hospedajedemo.vercel.app/preview.jpeg",
     liveUrl: "https://hospedajedemo.vercel.app/",
-
-    repoUrl: "https://github.com/GCDAEG/gymexample.git",
   },
 ];
 
@@ -139,17 +132,6 @@ export default function ProjectShowcase({
                           rel="noopener noreferrer"
                         >
                           Ver demo <ArrowUpRight className="ml-1 h-4 w-4" />
-                        </a>
-                      </Button>
-                    )}
-                    {project.repoUrl && (
-                      <Button size="sm" variant="outline" asChild>
-                        <a
-                          href={project.repoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <BsGithub className="mr-1 h-4 w-4" /> Código
                         </a>
                       </Button>
                     )}
