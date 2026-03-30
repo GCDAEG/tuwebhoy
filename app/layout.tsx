@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       "Páginas web modernas, claras y accesibles. Ideal para emprendedores y negocios chicos.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Tu Web Hoy - Páginas web listas en días",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "Tu web lista en días",
     description:
       "Webs modernas y accesibles para emprendedores. Lista para compartir y vender.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
 };
 export const roboto = Roboto({
