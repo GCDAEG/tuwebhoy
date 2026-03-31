@@ -53,6 +53,13 @@ const fallbackProjects: Project[] = [
     image: "https://hospedajedemo2.vercel.app/preview1.jpeg",
     liveUrl: "https://hospedajedemo2.vercel.app/",
   },
+  {
+    title: "Camara",
+    description:
+      "Landing moderna enfocada en conversión, clases de prueba y experiencia mobile.",
+    image: "https://phothographerdemo.vercel.app/preview.jpeg",
+    liveUrl: "https://phothographerdemo.vercel.app/",
+  },
 ];
 
 export default function ProjectShowcase({
