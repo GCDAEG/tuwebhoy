@@ -1,61 +1,65 @@
 "use client";
+import React from "react";
+import Link from "next/link";
+import { BsInstagram, BsTwitterX, BsFacebook } from "react-icons/bs";
+import { Heart, ArrowRight, Globe, Mail, MessageSquare } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { BsInstagram, BsTwitterX } from "react-icons/bs";
-import { FaFacebook } from "react-icons/fa";
-import { Heart } from "lucide-react";
-import Logo from "../ui/Logo";
-import { HomeIcon } from "lucide-react";
-import { MdOutlineFeaturedPlayList } from "react-icons/md";
-import { GrSteps } from "react-icons/gr";
-import { BsQuestion } from "react-icons/bs";
 import { Section } from "./Section";
-const sections = [
-  { id: "hero", label: "Inicio", icon: <HomeIcon /> },
-  {
-    id: "features",
-    label: "Características",
-    icon: <MdOutlineFeaturedPlayList />,
-  },
-  { id: "steps", label: "Pasos", icon: <GrSteps /> },
-  { id: "faq", label: "Preguntas", icon: <BsQuestion /> },
-];
+import Logo from "../ui/Logo";
+import { sections } from "@/lib/section";
+
 export function FooterSection() {
-  // Scroll suave restando altura del navbar
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
-
-    const navbarHeight = parseFloat(
-      getComputedStyle(document.documentElement).getPropertyValue(
-        "--navbar-height",
-      ) || "0",
-    );
-
-    const y =
-      el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-
+    const yOffset = -80; // Ajuste para el navbar
+    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
   };
-  return (
-    <footer className="relative w-full py-5 bg-secondary">
-      <Section className="flex flex-col gap-5" height="content" lazy={false}>
-        <div className=" flex flex-col w-full gap-5">
-          {/* Brand */}
 
-          <div className="w-full grid grid-cols-3 md:grid-cols-4 md:gap-12">
-            {/* Navegación */}
-            <div className="flex flex-col gap-2">
-              <h3 className="text-sm font-semibold text-foreground">
+  return (
+    <footer className="relative w-full bg-secondary/30 pt-20 pb-10 border-t border-border">
+      <Section height="content" lazy={false}>
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+            {/* COLUMNA 1: BRANDING (Ocupa 4 cols) */}
+            <div className="md:col-span-4 flex flex-col gap-6">
+              <Logo className="w-32 h-auto" />
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-xs font-medium">
+                Especialistas en transformar negocios locales con presencia
+                digital profesional. Simple, claro y efectivo.
+              </p>
+              <div className="flex gap-3">
+                {[
+                  { icon: BsInstagram, href: "#", label: "Instagram" },
+                  { icon: BsFacebook, href: "#", label: "Facebook" },
+                  { icon: BsTwitterX, href: "#", label: "X" },
+                ].map((social, i) => (
+                  <a
+                    key={i}
+                    href={social.href}
+                    target="_blank"
+                    className="size-10 rounded-xl bg-background border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all shadow-sm"
+                    aria-label={social.label}
+                  >
+                    <social.icon className="size-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* COLUMNA 2: NAVEGACIÓN (Ocupa 2 cols) */}
+            <div className="md:col-span-2 flex flex-col gap-6">
+              <h4 className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">
                 Secciones
-              </h3>
-              <nav className="flex flex-col items-start gap-1.5 text-sm text-muted-foreground">
+              </h4>
+              <nav className="flex flex-col gap-3">
                 {sections.map((sec) => (
                   <button
-                    onClick={() => scrollToSection(sec.id)}
                     key={sec.id}
-                    className="hover:text-foreground transition-colors"
+                    onClick={() => scrollToSection(sec.id)}
+                    className="text-sm font-bold text-muted-foreground hover:text-foreground transition-colors text-left"
                   >
                     {sec.label}
                   </button>
@@ -63,88 +67,77 @@ export function FooterSection() {
               </nav>
             </div>
 
-            {/* Legal */}
-            <div className="flex flex-col gap-2">
-              <h3 className="text-sm font-semibold text-foreground">Legal</h3>
-              <nav className="flex flex-col gap-1.5 text-sm text-muted-foreground">
-                <Link
-                  href="/legal/privacy"
-                  className="hover:text-foreground transition-colors"
-                >
-                  Privacidad
-                </Link>
-                <Link
-                  href="/legal/terms"
-                  className="hover:text-foreground transition-colors"
-                >
-                  Términos
-                </Link>
-                <Link
-                  href="/legal/cookies"
-                  className="hover:text-foreground transition-colors"
-                >
-                  Cookies
-                </Link>
+            {/* COLUMNA 3: LEGAL (Ocupa 2 cols) */}
+            <div className="md:col-span-2 flex flex-col gap-6">
+              <h4 className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">
+                Legal
+              </h4>
+              <nav className="flex flex-col gap-3">
+                {["privacy", "terms", "cookies"].map((item) => (
+                  <Link
+                    key={item}
+                    href={`/legal/${item.toLowerCase()}`}
+                    className="text-sm font-bold text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {item}
+                  </Link>
+                ))}
               </nav>
             </div>
-            <div className="flex flex-col gap-3 row-span-1">
-              <h3 className="text-sm font-semibold text-foreground">
-                Seguinos
-              </h3>
-              <div className="flex gap-2 text-foreground">
-                <Button variant="ghost" size="icon" asChild>
-                  <a
-                    href="https://www.facebook.com/profile.php?id=61586225087581"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook"
-                  >
-                    <FaFacebook className="h-5 w-5" />
-                  </a>
-                </Button>
 
-                <Button variant="ghost" size="icon" asChild>
-                  <a
-                    href="https://x.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Twitter / X"
-                  >
-                    <BsTwitterX className="h-5 w-5" />
-                  </a>
-                </Button>
-
-                <Button variant="ghost" size="icon" asChild>
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                  >
-                    <BsInstagram className="h-5 w-5" />
-                  </a>
-                </Button>
-              </div>
-            </div>
-            <div className="flex items-center justify-center w-full col-span-3 md:col-span-1 mt-12 md:mt-0">
-              <div className="w-36">
-                <Logo />
+            {/* COLUMNA 4: CONTACTO RÁPIDO (Ocupa 4 cols) */}
+            <div className="md:col-span-4 flex flex-col gap-6">
+              <h4 className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">
+                Contacto
+              </h4>
+              <div className="space-y-4">
+                <a
+                  href="mailto:hola@tuwebhoy.com"
+                  className="flex items-center gap-3 text-sm font-bold text-muted-foreground hover:text-primary transition-colors group"
+                >
+                  <div className="size-8 rounded-lg bg-background border border-border flex items-center justify-center group-hover:border-primary">
+                    <Mail className="size-4" />
+                  </div>
+                  tuwebhoy@proton.me
+                </a>
+                <a
+                  href="https://wa.me/543446648013"
+                  className="flex items-center gap-3 text-sm font-bold text-muted-foreground hover:text-primary transition-colors group"
+                >
+                  <div className="size-8 rounded-lg bg-background border border-border flex items-center justify-center group-hover:border-primary">
+                    <MessageSquare className="size-4" />
+                  </div>
+                  +54 9 3446 648013
+                </a>
+                <div className="pt-2">
+                  <p className="text-[10px] font-bold text-muted-foreground flex items-center gap-2">
+                    <Globe size={12} strokeWidth={3} /> Gualeguaychú, Entre
+                    Ríos.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Social */}
-        </div>
+          <Separator className="bg-border/50" />
 
-        <Separator className="my-5" />
+          {/* BARRA INFERIOR DE COPYRIGHT */}
+          <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex flex-col md:items-start items-center">
+              <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+                © {new Date().getFullYear()}{" "}
+                <span className="text-foreground">TUWEBHOY</span> — Hecho con{" "}
+                <Heart className="size-3 fill-red-500 text-red-500 animate-pulse" />{" "}
+                en Entre Ríos
+              </p>
+            </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 text-center text-sm text-muted-foreground md:flex-row">
-          <p>
-            © {new Date().getFullYear()} TUWEBHOY — Hecho con{" "}
-            <Heart className="inline h-4 w-4 fill-red-500 text-red-500" /> en
-            Entre Ríos
-          </p>
-          <p className="text-xs">Webs simples. Claras. Que funcionan.</p>
+            <div className="flex items-center gap-6">
+              <p className="text-[10px] font-black text-foreground italic uppercase tracking-tighter">
+                Webs simples. Claras. Que funcionan.
+              </p>
+            </div>
+          </div>
         </div>
       </Section>
     </footer>

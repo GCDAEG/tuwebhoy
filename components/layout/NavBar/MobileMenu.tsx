@@ -2,157 +2,125 @@
 import React, { useState } from "react";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetTrigger,
+  SheetHeader,
+  SheetTitle,
 } from "@/components/ui/sheet";
-import { FaBars } from "react-icons/fa";
+import { Menu, Heart, ArrowRight } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 import { NavSection } from "@/lib/section";
-import {} from "react-icons/ri";
-import { Heart } from "lucide-react";
-import { motion } from "framer-motion";
 import { AppIcon } from "@/lib/AppIcon";
 import { Button } from "@/components/ui/button";
 import { useLenis } from "lenis/react";
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
+
 interface MobileMenuProps {
   sections: NavSection[];
   activeSection: string | null;
-  isScrolled: boolean;
-  isGuide: boolean;
-  pathname: string;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({
-  activeSection,
-  sections,
-  isGuide,
-  pathname,
-}) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ activeSection, sections }) => {
   const [open, setOpen] = useState(false);
   const lenis = useLenis();
   const router = useRouter();
 
-  const handlerOpen = (e: boolean) => {
-    setOpen(e);
-  };
-
-  const handleClickLink = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    sec: NavSection,
-  ) => {
-    e.preventDefault();
-
-    if (sec.type === "page" && sec.href) {
-      router.push(sec.href);
-      return;
-    }
-
-    if (sec.type === "home") {
-      router.push("/");
-      return;
-    }
-
-    if (sec.type === "scroll") {
-      if (isGuide || pathname !== "/") {
-        router.push(`/#${sec.id}`);
-      } else {
-        lenis?.scrollTo(`#${sec.id}`, {
-          offset: -56,
-          duration: 1.2,
-        });
-      }
-    }
-  };
   return (
-    <motion.div
-      transition={{ duration: 0.25, ease: "easeOut" }}
-      className={`mx-auto max-w-7xl px-4 md:px-6 lg:px-8 h-14 flex justify-between items-center backdrop-blur lg:hidden `}
-    >
-      {/* Logo */}
-      <div>
-        <div
-          key="logo"
-          className="w-full flex-col h-full text-primary-foreground rounded-full flex justify-center items-center font-bold bg-black"
-        >
-          <Logo className="w-32" />
-        </div>
-      </div>
-      <Sheet open={open} onOpenChange={handlerOpen}>
-        <SheetTrigger
-          className="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-accent focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          onClick={() => handlerOpen(!open)}
-        >
-          <FaBars className="h-6 w-6 text-foreground" />
+    <div className="flex lg:hidden items-center justify-between w-full h-full px-4">
+      {/* LOGO */}
+      <button onClick={() => router.push("/")} className="outline-none">
+        <Logo className="w-28 h-auto" />
+      </button>
+
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetTrigger asChild>
+          <Button variant="ghost" size="icon" className="text-foreground">
+            <Menu className="size-6" />
+          </Button>
         </SheetTrigger>
 
         <SheetContent
           side="right"
-          className="bg-sidebar border-l border-border lg:hidden"
+          className="w-[300px] sm:w-[350px] p-0 flex flex-col bg-background border-l border-border"
         >
-          <div className="flex flex-col h-full ">
-            {/* Header en mobile */}
-            <div className="py-6 px-6 border-b w-full">
-              <div key="logo" className="flex gap-3 items-center">
-                <Logo className="w-24" />
-              </div>
-            </div>
+          <SheetHeader className="p-6 border-b border-border/50 text-left">
+            <SheetTitle>
+              <Logo className="w-24 h-auto" />
+            </SheetTitle>
+          </SheetHeader>
 
-            {/* Navegación */}
-            <ul className="flex flex-col gap-2 mt-6 px-6 w-full">
-              {sections.map((sec) => (
-                <li key={sec.id}>
-                  <SheetClose asChild>
-                    <Button
-                      variant={"ghost"}
-                      className={`flex w-full justify-start gap-5 items-center ${activeSection === sec.id ? "bg-accent/20" : ""}`}
-                      type="button"
+          {/* NAVEGACIÓN */}
+          <nav className="flex-1 overflow-y-auto py-6 px-4">
+            <ul className="flex flex-col gap-1">
+              {sections.map((sec) => {
+                const isActive = activeSection === sec.id;
+                return (
+                  <li key={sec.id}>
+                    <button
                       onClick={(e) => {
-                        handlerOpen(!open);
-                        handleClickLink(e, sec);
+                        e.preventDefault();
+                        lenis?.scrollTo(`#${sec.id}`, {
+                          offset: -80,
+                          duration: 1.2,
+                        });
+                        setOpen(false);
                       }}
+                      className={cn(
+                        "flex items-center gap-4 w-full px-4 py-4 rounded-xl text-sm font-bold transition-all active:scale-[0.98]",
+                        isActive
+                          ? "bg-primary/10 text-primary"
+                          : "text-muted-foreground hover:bg-secondary hover:text-foreground",
+                      )}
                     >
-                      <div className="flex items-center gap-3 w-full text-sm md:text-md font-medium relative hover:text-primary cursor-pointer">
-                        {sec.icon && (
-                          <AppIcon name={sec.icon} className="size-5" />
-                        )}
-                        {<p>{sec.label}</p>}
-                      </div>
-                    </Button>
-                  </SheetClose>
-                </li>
-              ))}
-              <li key={"domain-guide"}>
-                <SheetClose asChild>
-                  {/* <button
-                    onClick={() => handlerOpen(!open)}
-                    className="w-full flex items-center gap-3 rounded-lg px-4 py-3 text-sidebar-foreground transition-colors hover:bg-muted"
-                  >
-                    <Link
-                      href="/guide"
-                      className="flex gap-1.5 items-center text-foreground"
-                    >
-                      <p>Guía de Dominios</p>
-                    </Link>
-                  </button> */}
-                </SheetClose>
-              </li>
+                      {sec.icon && (
+                        <AppIcon
+                          name={sec.icon}
+                          className={cn(
+                            "size-5",
+                            isActive ? "text-primary" : "text-muted-foreground",
+                          )}
+                        />
+                      )}
+                      <span className="flex-1 text-left">{sec.label}</span>
+                      {isActive && (
+                        <div className="size-1.5 rounded-full bg-primary" />
+                      )}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
 
-            {/* Footer opcional */}
-            <div className="mt-auto px-6 py-8 border-t text-sm text-gray-500">
-              <p>
-                © {new Date().getFullYear()} TUWEBHOY — Hecho con{" "}
-                <Heart className="inline h-4 w-4 fill-red-500 text-red-500" />{" "}
-                en Entre Ríos
-              </p>
-              <p className="text-xs">Webs simples. Claras. Que funcionan.</p>
+            {/* BOTÓN CTA DENTRO DEL MENÚ */}
+            <div className="mt-8 px-2">
+              <Button
+                onClick={() =>
+                  window.open("https://wa.me/543446648013", "_blank")
+                }
+                className="w-full h-12 bg-primary text-white font-black uppercase tracking-widest text-[10px] rounded-xl shadow-lg shadow-primary/20"
+              >
+                Cotizar Proyecto <ArrowRight className="size-4 ml-2" />
+              </Button>
             </div>
+          </nav>
+
+          {/* FOOTER DEL MENÚ */}
+          <div className="p-6 border-t border-border/50 bg-secondary/30">
+            <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5 mb-1">
+              © {new Date().getFullYear()} TUWEBHOY
+            </p>
+            <p className="text-[10px] font-medium text-muted-foreground flex items-center gap-1">
+              Hecho con <Heart className="size-3 fill-red-500 text-red-500" />{" "}
+              en Entre Ríos
+            </p>
+            <p className="text-[11px] font-black text-foreground mt-3 italic tracking-tight">
+              Webs simples. Claras. Que funcionan.
+            </p>
           </div>
         </SheetContent>
       </Sheet>
-    </motion.div>
+    </div>
   );
 };
 

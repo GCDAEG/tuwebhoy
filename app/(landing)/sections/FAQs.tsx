@@ -1,16 +1,15 @@
+"use client";
+import React from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-
 import { Section } from "@/components/layout/Section";
-import { base, title, titleH2 } from "@/app/layout";
-import { StaggerContainer } from "@/components/motion/StraggerContainer";
-import { FadeIn } from "@/components/motion/FadeIn";
-import { Separator } from "@/components/ui/separator";
+import { HelpCircle, ArrowRightCircle, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const faqs = [
   {
@@ -18,15 +17,15 @@ const faqs = [
     question: "¿Cómo compro el dominio de mi web?",
     answer: (
       <>
-        El dominio es el nombre de tu página (por ejemplo: tunegocio.com). Podés
+        El dominio es el nombre de tu página (ej: tunegocio.com). Podés
         comprarlo fácilmente siguiendo nuestra guía paso a paso.{" "}
         <Link
           href="/guide"
-          className="text-primary font-medium hover:underline"
+          className="text-primary font-bold hover:underline inline-flex items-center gap-1"
         >
-          Ver guía para comprar dominio y hosting
+          Ver guía <ArrowRightCircle className="size-3" />
         </Link>
-        . Si necesitás ayuda, te acompañamos durante todo el proceso.
+        . Si necesitás ayuda, te acompañamos sin costo en el proceso.
       </>
     ),
   },
@@ -34,98 +33,79 @@ const faqs = [
     id: "item-2",
     question: "¿Cuánto tarda en estar lista mi web?",
     answer:
-      "En la mayoría de los casos, tu web está lista entre 2 y 5 días. El tiempo depende del contenido y de los ajustes que quieras hacer, pero siempre priorizamos una entrega rápida.",
+      "Normalmente entre 2 y 5 días hábiles. Depende de qué tan rápido nos envíes la info, pero nuestra prioridad es que estés online lo antes posible.",
   },
   {
     id: "item-3",
-    question: "¿Qué incluye el servicio?",
+    question: "¿Qué incluye exactamente el servicio?",
     answer:
-      "Incluye diseño web claro y profesional, armado completo del sitio, adaptación a celulares y tablets, botón de contacto por WhatsApp y publicación online. Te entregamos una web lista para usar.",
+      "Diseño profesional, estructura optimizada para ventas, adaptación total a celulares, botón directo a tu WhatsApp y la publicación final en internet.",
   },
   {
     id: "item-5",
-    question: "¿Qué necesito para empezar?",
+    question: "¿Qué necesito enviarte para empezar?",
     answer:
-      "Muy poco: el nombre de tu negocio, un número de WhatsApp de contacto y una idea general de lo que querés mostrar. Si no tenés textos, imágenes o logo, te ayudamos a resolverlo.",
-  },
-  {
-    id: "item-6",
-    question: "¿Puedo pedir cambios?",
-    answer:
-      "Sí. Podés pedir ajustes de textos, colores o secciones antes de la entrega final, para que la web quede como esperás.",
+      "Solo el nombre de tu negocio y tu número de contacto. Si no tenés logo o fotos, no te preocupes: nosotros te ayudamos a resolver la estética inicial.",
   },
   {
     id: "item-7",
     question: "¿Tengo que pagar mantenimiento mensual?",
     answer:
-      "No. El desarrollo es un pago único. El dominio y el hosting se pagan de forma anual y quedan a tu nombre, sin costos ocultos ni suscripciones obligatorias.",
+      "No. El desarrollo se paga una sola vez. Solo deberás renovar tu dominio y hosting anualmente (que quedan a tu nombre), sin comisiones para nosotros.",
   },
 ];
 
 const FAQS = () => {
   return (
-    <Section height="screen" id="faq" className=" bg-background">
-      <div
-        className={`
-          w-full flex flex-col justify-center items-center
-          gap-14 py-16
-          ${base}
-        `}
-      >
-        <h3
-          className={`
-              text-3xl md:text-4xl
-              font-extrabold
-              text-foreground
-              ${title}
-            `}
-        >
-          ¿Tenés dudas?
-        </h3>
+    <Section id="faq" className="bg-background">
+      <div className="container mx-auto max-w-7xl">
+        <div className="flex flex-col lg:flex-row gap-16">
+          {/* COLUMNA IZQUIERDA: Títulos */}
+          <div className="lg:w-1/3 flex flex-col items-start">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+              <HelpCircle className="size-3" /> FAQ
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-foreground leading-[1.1] tracking-tighter italic uppercase">
+              Dudas <br />
+              <span className="text-primary">Frecuentes.</span>
+            </h2>
+            <p className="mt-6 text-muted-foreground font-medium">
+              Todo lo que necesitás saber antes de empezar tu transformación
+              digital con nosotros.
+            </p>
 
-        <div
-          className="
-              w-full max-w-3xl
-              bg-card
-              border border-border
-              rounded-xl
-              shadow-md
-              overflow-hidden
-            "
-        >
-          <Accordion type="single" collapsible className="w-full text-start">
-            {faqs.map((faq) => (
-              <AccordionItem
-                key={faq.id}
-                value={faq.id}
-                className="border-b border-border last:border-b-0"
-              >
-                <AccordionTrigger
-                  className={`
-                      px-5 py-4
-                      md:text-lg
-                      font-medium
-                      text-foreground
-                      hover:no-underline
-                      ${titleH2}
-                    `}
-                >
-                  {faq.question}
-                </AccordionTrigger>
+            <div className="mt-10 p-6 rounded-3xl bg-secondary/50 border border-border hidden lg:block">
+              <Sparkles className="size-6 text-primary mb-4" />
+              <p className="text-sm font-bold text-foreground italic uppercase mb-2">
+                ¿Otra pregunta?
+              </p>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Si tenés una duda específica, escribinos por WhatsApp y te
+                respondemos en minutos.
+              </p>
+            </div>
+          </div>
 
-                <AccordionContent
-                  className="
-                      px-5 pb-4
-                      text-base md:text-lg
-                      text-muted-foreground
-                      leading-relaxed
-                    "
+          {/* COLUMNA DERECHA: Acordeones */}
+          <div className="lg:w-2/3">
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {faqs.map((faq) => (
+                <AccordionItem
+                  key={faq.id}
+                  value={faq.id}
+                  className="border border-border bg-card/30 rounded-2xl px-6 overflow-hidden transition-all duration-300 data-[state=open]:border-primary/40 data-[state=open]:bg-card data-[state=open]:shadow-xl data-[state=open]:shadow-primary/5"
                 >
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+                  <AccordionTrigger className="py-6 text-left hover:no-underline hover:text-primary transition-colors text-base md:text-lg font-bold tracking-tight uppercase italic italic">
+                    {faq.question}
+                  </AccordionTrigger>
+
+                  <AccordionContent className="text-muted-foreground text-sm md:text-base leading-relaxed pb-6 font-medium">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </div>
       </div>
     </Section>

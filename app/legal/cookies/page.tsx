@@ -7,9 +7,9 @@ export default function PoliticaCookies() {
       </p>
 
       <p>
-        Este sitio web **no utiliza cookies de seguimiento ni analíticas de
-        terceros** (como Google Analytics, Meta Pixel u otras herramientas
-        similares).
+        Este sitio web{" "}
+        <b>no utiliza cookies de seguimiento ni analíticas de terceros</b> (como
+        Google Analytics, Meta Pixel u otras herramientas similares).
       </p>
 
       <p>
@@ -18,8 +18,8 @@ export default function PoliticaCookies() {
       </p>
 
       <p>
-        Por lo tanto, **no es necesario consentimiento para cookies** ni banner
-        de aceptación.
+        Por lo tanto, <b>no es necesario consentimiento para cookies</b> ni
+        banner de aceptación.
       </p>
 
       <p className="mt-8">

@@ -6,9 +6,9 @@ export default function PoliticaPrivacidad() {
         Última actualización: {new Date().toLocaleDateString("es-AR")}
       </p>
       <p>
-        En [Nombre del Estudio] respetamos tu privacidad. Esta política explica
-        cómo manejamos la información que nos compartís al contactarnos por
-        WhatsApp o mediante cualquier medio en este sitio.
+        En TUWEBHOY respetamos tu privacidad. Esta política explica cómo
+        manejamos la información que nos compartís al contactarnos por WhatsApp
+        o mediante cualquier medio en este sitio.
       </p>
       <h2 className="text-2xl font-semibold mt-10 mb-4">
         Información que recopilamos
@@ -29,18 +29,20 @@ export default function PoliticaPrivacidad() {
 
       <h2 className="text-2xl font-semibold mt-8 mb-4">Cookies</h2>
       <p>
-        Este sitio no utiliza cookies de seguimiento ni analíticas. Solo cookies
-        técnicas esenciales para el funcionamiento básico (si las hubiera).
+        Este sitio no utiliza cookies de seguimiento ni analíticas.
+        {/* Solo cookies
+        técnicas esenciales para el funcionamiento básico (si las hubiera). */}
       </p>
 
       <h2 className="text-2xl font-semibold mt-8 mb-4">Tus derechos</h2>
       <p>
         Podés ejercer tus derechos de acceso, rectificación, cancelación y
-        oposición enviándonos un mensaje a [tu email o WhatsApp].
+        oposición enviándonos un mensaje a tuwebhoy@proton.me .
       </p>
 
       <p className="mt-12 text-sm text-gray-500">
-        Cualquier duda, escribinos directamente por WhatsApp.
+        Cualquier duda, escribinos directamente por WhatsApp o Correo
+        electronico.
       </p>
     </div>
   );
