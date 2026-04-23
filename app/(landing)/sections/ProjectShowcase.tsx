@@ -62,8 +62,8 @@ export default function ProjectShowcase({
               Portfolio Seleccionado
             </div>
             <h2 className="text-4xl md:text-6xl font-black text-foreground leading-[1.1] tracking-tighter uppercase italic">
-              Casos de <br />
-              <span className="text-primary">Éxito Real.</span>
+              Páginas <br />
+              <span className="text-primary">de ejemplo.</span>
             </h2>
           </div>
           <p className="text-muted-foreground font-medium max-w-xs md:text-right text-sm">
