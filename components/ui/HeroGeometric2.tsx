@@ -3,8 +3,8 @@ export default function HeroGeometric2() {
     <svg
       viewBox="0 0 400 400"
       className="
-        absolute
-        w-[320px] sm:w-[380px] md:w-[420px] lg:w-[480px]
+        
+        w-[320px] sm:w-[320px] md:w-[420px] lg:w-[480px]
         h-auto
         text-primary
       "

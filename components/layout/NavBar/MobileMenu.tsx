@@ -19,9 +19,14 @@ import { cn } from "@/lib/utils";
 interface MobileMenuProps {
   sections: NavSection[];
   activeSection: string | null;
+  isScrolled: boolean;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ activeSection, sections }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({
+  activeSection,
+  sections,
+  isScrolled,
+}) => {
   const [open, setOpen] = useState(false);
   const lenis = useLenis();
   const router = useRouter();
@@ -35,7 +40,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ activeSection, sections }) => {
 
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" className="text-foreground">
+          <Button
+            variant="ghost"
+            size="icon"
+            // Si el fondo del hero es oscuro, el icono será blanco al estar arriba
+            className={cn(
+              "transition-colors",
+              isScrolled ? "text-foreground" : "text-white hover:bg-white/10",
+            )}
+          >
             <Menu className="size-6" />
           </Button>
         </SheetTrigger>

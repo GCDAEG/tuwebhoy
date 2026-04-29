@@ -30,7 +30,7 @@ const fallbackProjects: Project[] = [
     category: "Fitness & Health",
     description:
       "Landing moderna con sistema de planes y captura de leads para clases de prueba.",
-    image: "https://gymexample-delta.vercel.app/preview.jpeg",
+    image: "https://gymdemotwh.vercel.app/preview.jpeg",
     liveUrl: "https://gymexample-delta.vercel.app/",
     tags: ["Framer Motion", "Conversion"],
   },
@@ -39,8 +39,8 @@ const fallbackProjects: Project[] = [
     category: "Tourism",
     description:
       "Interfaz inmersiva enfocada en visuales de alta calidad y reservas rápidas.",
-    image: "https://hospedajedemo.vercel.app/preview.jpeg",
-    liveUrl: "https://hospedajedemo.vercel.app/",
+    image: "https://hospedajedemo2.vercel.app/preview1.jpeg",
+    liveUrl: "https://hospedajedemo2.vercel.app/",
     tags: ["Mobile First", "UI/UX"],
   },
 ];

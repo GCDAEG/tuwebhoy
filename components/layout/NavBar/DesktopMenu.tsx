@@ -10,11 +10,13 @@ import { cn } from "@/lib/utils";
 interface DesktopMenuProps {
   sections: NavSection[];
   activeSection: string | null;
+  isScrolled: boolean;
 }
 
 const DesktopMenu: React.FC<DesktopMenuProps> = ({
   activeSection,
   sections,
+  isScrolled,
 }) => {
   const lenis = useLenis();
   const router = useRouter();
@@ -55,19 +57,27 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
   };
 
   return (
-    <nav className="hidden lg:flex items-center justify-between w-full max-w-7xl mx-auto px-6 h-full ">
+    <nav className="hidden lg:flex items-center justify-between w-full max-w-7xl mx-auto px-6 h-full">
       {/* LOGO */}
       <div className="flex items-center h-full">
         <button
           onClick={() => router.push("/")}
           className="hover:opacity-80 transition-opacity cursor-pointer p-0 flex items-center"
         >
+          {/* Si tu Hero es muy oscuro, podrías renderizar una versión blanca del logo cuando !isScrolled */}
           <Logo className="w-32 h-full" />
         </button>
       </div>
 
       {/* NAVEGACIÓN CENTRAL */}
-      <div className="bg-secondary/50 border border-border/60 p-1 rounded-2xl ">
+      <div
+        className={cn(
+          "p-1 rounded-2xl transition-all duration-300",
+          isScrolled
+            ? "bg-secondary/50 border border-border/60"
+            : "bg-white/5 backdrop-blur-sm border border-white/10", // Aspecto cristalino cuando está sobre el Hero
+        )}
+      >
         <ul className="flex items-center gap-1">
           {sections.map((sec) => {
             const active = isItemActive(sec);
@@ -79,16 +89,26 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
                   className={cn(
                     "relative px-5 py-2 text-sm font-bold rounded-xl flex items-center gap-2 transition-colors cursor-pointer outline-none",
                     active
-                      ? "bg-background text-primary shadow-sm border border-border/50"
-                      : "text-muted-foreground hover:text-foreground hover:bg-background/40",
+                      ? isScrolled
+                        ? "bg-background text-primary shadow-sm border border-border/50"
+                        : "bg-white/10 text-white shadow-sm border border-white/20"
+                      : isScrolled
+                        ? "text-muted-foreground hover:text-foreground hover:bg-background/40"
+                        : "text-white/70 hover:text-white hover:bg-white/10",
                   )}
                 >
                   {sec.icon && (
                     <AppIcon
                       name={sec.icon}
                       className={cn(
-                        "size-4",
-                        active ? "text-primary" : "text-muted-foreground",
+                        "size-4 transition-colors",
+                        active
+                          ? isScrolled
+                            ? "text-primary"
+                            : "text-white"
+                          : isScrolled
+                            ? "text-muted-foreground"
+                            : "text-white/70",
                       )}
                     />
                   )}
@@ -104,7 +124,12 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
       <div className="flex items-center">
         <button
           onClick={() => window.open("https://wa.me/543446648013", "_blank")}
-          className="px-6 py-2.5 bg-primary text-white rounded-xl text-[11px] font-black uppercase tracking-[0.15em] hover:brightness-110 active:scale-95 transition-all shadow-md cursor-pointer"
+          className={cn(
+            "px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-[0.15em] transition-all shadow-md cursor-pointer",
+            isScrolled
+              ? "bg-primary text-white hover:brightness-110 active:scale-95"
+              : "bg-white text-primary hover:bg-white/90 active:scale-95", // Contraste inverso cuando está en el hero
+          )}
         >
           Cotizar Proyecto
         </button>
