@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Section } from "./Section";
 import Logo from "../ui/Logo";
 import { sections } from "@/lib/section";
+import { LiaLinkedin } from "react-icons/lia";
 
 export function FooterSection() {
   const scrollToSection = (id: string) => {
@@ -46,6 +47,15 @@ export function FooterSection() {
                     <social.icon className="size-4" />
                   </a>
                 ))}
+                <a
+                  key={"gonzalo"}
+                  href={"https://gonzalo-carles.vercel.app/en"}
+                  target="_blank"
+                  className="size-10 rounded-xl bg-background border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all shadow-sm"
+                  aria-label={"Portfolio"}
+                >
+                  <LiaLinkedin className="size-4" />
+                </a>
               </div>
             </div>
 
